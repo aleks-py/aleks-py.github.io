@@ -67,7 +67,9 @@ Here an input image is encoded into a lower-dimensional latent space representat
 
 &nbsp;  
 <callout>
-Try it out yourself! We’ve trained an autoencoder with a two-dimensional latent space embedding from the [Frey Faces Dataset](https://cs.nyu.edu/~roweis/data.html). The two latents happen to correspond to expression and pose (the two variables changed in the dataset). Drag your cursor through latent space to change the values of the latent variable, Z, and see how the reconstructed image from the decoder changes:
+
+**Try it out yourself!** We’ve trained an autoencoder with a two-dimensional latent space embedding from the [Frey Faces Dataset](https://cs.nyu.edu/~roweis/data.html). The two latents happen to correspond to expression and pose (the two variables changed in the dataset). Drag your cursor through latent space to change the values of the latent variable, Z, and see how the reconstructed image from the decoder changes:
+
 </callout>
 <figure>
   <iframe height="420px" width="720px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://vae-gui.onrender.com/"></iframe>
