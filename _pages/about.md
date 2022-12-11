@@ -23,12 +23,11 @@ Make-A-Video and Imagen Video have come out just six months after Open-AI’s DA
 {: style="text-align: justify"}
 
 <img src="assets/img/timeline.png" width="770" />
-<!-- ![timeline](assets/img/timeline.png =x600) -->
 
 In this post, we’ll break down the building blocks to make text-to-video generation possible, starting from a brief overview of how text to image generators use stable diffusion, how to make the components 3D to incorporate temporal information for video generation, and how to increase the spatial and temporal resolution.
 {: style="text-align: justify"}
 
-![T2V](assets/img/T2V.png)
+<img src="assets/img/T2V.png" width="770" />
 
 We’ll focus on how these components make up Make-A-Video and Imagen Video, but also touch on CogVideo (an open-source text to image video generator that uses a VQVAE + autoregressive transformers architecture).
 {: style="text-align: justify"}
