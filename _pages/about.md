@@ -53,7 +53,7 @@ First let’s explain how **auto-encoders** work:
 <figure>
   <img src="assets/img/autoencoder.png" width="500" />
   <figcaption>Figure 3. Demonstration of an autoencoder network. Images get compressed into lower-dimensional embeddings that are later decoded and "reconstructed". Training this autoencoder network sets the weights for the encoder and decoder such that when new
-  images, unseen by the network during training are passed through, brand new images 
+  images, unseen by the network during training are passed through, brand new images
   are generated.</figcaption>
 </figure>
 &nbsp;
@@ -70,6 +70,13 @@ We train our network using **stable diffusion**.
 ##### **How does stable diffusion work in latent space?**
 During the forward process, we create a dataset by incrementally adding more noise to our latent variables. In the reverse process, we train a model with a **U-Net architecture** to iteratively denoise these latents. This way, we can efficiently generate new images by starting with random noise and end up with a latent that can be decoded into a real image (while conditioning layers on the input text embedding).
 {: style="text-align: justify"}
+
+<figure>
+  <img src="assets/img/stable_diff_latent_space.png" width="770" />
+  <figcaption>Figure 4. Stable diffusion.</figcaption>
+</figure>
+&nbsp;  
+
 
 The U-Net architecture (which we use as a noise detector) is an auto-encoder. Downsampling and upsampling is done with convolutional layers. However, because the latent space is lower-dimensional, it’s possible to lose information, meaning that spatial recreation can be imprecise during upsampling. To deal with this, U-Net has **skip connections** that provide access to spatial information during downsampling.
 {: style="text-align: justify"}
