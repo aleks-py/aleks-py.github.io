@@ -52,11 +52,8 @@ We’ll break down the building blocks to make text-to-video generation possible
 
 
 ## **Text-to-Image Generation**
-Text to Image uses stable diffusion in latent space and a 2D U-Net architecture for image generation (see link for more details).
-{: style="text-align: justify"}
-
 ##### **What is latent space?**
-First let’s explain how **auto-encoders** work:
+Text to Image uses stable diffusion in latent space and a 2D U-Net architecture for image generation (see link for more details). First let’s explain how **auto-encoders** work:
 {: style="text-align: justify"}
 
 <figure>
