@@ -190,7 +190,7 @@ Bringing all the foundational building blocks together, we can now build the ful
 {: style="text-align: justify"}
 
 <figure>
-  <video autoplay muted loop src="https://imagen.research.google/video/hdvideos/51.mp4" width="670" type="video/mp4">
+  <video autoplay muted loop src="https://imagen.research.google/video/hdvideos/51.mp4" width="600" type="video/mp4">
   </video>
 </figure>
 
@@ -198,7 +198,7 @@ Bringing all the foundational building blocks together, we can now build the ful
 {: style="text-align: justify"}
 
 <figure>
-  <video autoplay muted loop src="https://imagen.research.google/video/hdvideos/14.mp4" width="670" type="video/mp4">
+  <video autoplay muted loop src="https://imagen.research.google/video/hdvideos/14.mp4" width="600" type="video/mp4">
   </video>
 </figure>
 
