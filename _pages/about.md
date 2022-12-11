@@ -70,6 +70,10 @@ Here an input image is encoded into a lower-dimensional latent space representat
 Sampling within the latent space distribution allows us to generate realistic outputs.
 {: style="text-align: justify"}
 
+<figure>
+  <iframe height="400px" width="600px" src="https://vae-gui.onrender.com/"></iframe>
+</figure>
+
 We train our network using **stable diffusion**.
 {: style="text-align: justify"}
 
