@@ -104,11 +104,13 @@ However, the poor feature representation in the initial layers result in redunda
 
 &nbsp;  
 <callout>
-Try it out yourself! Click on different points in the first image and see how this would change the weights in the attention layer. The attention highlights similar features to the clicked region. For text-to-image and text-to-video generation, we include text embeddings to condition attention. In the next section we discuss the use of attention in the spatial and temporal attention dimensions:
+Try it out yourself! Click on different points in the first image and see how this would change the weights in the attention layer. The attention highlights similar features to the clicked region. For text-to-image and text-to-video generation, we include text embeddings to condition attention:
 </callout>
 <figure>
   <iframe height="400px" width="600px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://attn-gui.onrender.com/"></iframe>
 </figure>
+
+In the next section we discuss the use of attention in the spatial and temporal dimensions to move from 2D representations (images) to 3D representations (video = image + time).
 
 ## **Text-to-Video Generation**
 
