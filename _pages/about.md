@@ -24,7 +24,7 @@ Make-A-Video and Imagen Video have come out just six months after Open-AI’s DA
 
 <figure>
   <img src="assets/img/timeline.png" width="770" />
-  <figcaption>Figure 2. Timeline of video generation and prediction techniques. The modern-day Text-to-Video generators each leverage the capabilities of massive pre-trained Text-to-Image networks, such as Imagen and DALL-E 2.</figcaption>
+  <figcaption>Figure 1. Timeline of video generation and prediction techniques. The modern-day Text-to-Video generators each leverage the capabilities of massively pre-trained Text-to-Image networks, such as Imagen and DALL-E 2.</figcaption>
 </figure>
 
 &nbsp;  
@@ -32,7 +32,14 @@ Make-A-Video and Imagen Video have come out just six months after Open-AI’s DA
 In this post, we’ll break down the building blocks to make text-to-video generation possible, starting from a brief overview of how text to image generators use stable diffusion, how to make the components 3D to incorporate temporal information for video generation, and how to increase the spatial and temporal resolution.
 {: style="text-align: justify"}
 
-<img src="assets/img/T2V.png" width="770" />
+<figure>
+  <img src="assets/img/T2V.png" width="700" />
+  <figcaption>Figure 2. Network diagram for a general Text-to-Video workflow.
+  Text-to-Image encodings are trained to be decoded into image "batches", e.g.,
+  video, that get upsampled spatially and temporally.</figcaption>
+</figure>
+
+&nbsp;  
 
 We’ll focus on how these components make up Make-A-Video and Imagen Video, but also touch on CogVideo (an open-source text to image video generator that uses a VQVAE + autoregressive transformers architecture).
 {: style="text-align: justify"}
