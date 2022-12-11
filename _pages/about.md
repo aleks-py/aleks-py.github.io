@@ -82,7 +82,7 @@ The U-Net architecture (which we use as a noise detector) is an auto-encoder. Do
 {: style="text-align: justify"}
 
 <figure>
-  <img src="assets/img/unet1.png" width="600" />
+  <img src="assets/img/unet1.png" width="770" />
   <figcaption>Figure 5. U-Net.</figcaption>
 </figure>
 &nbsp;
@@ -117,7 +117,7 @@ The base video decoder creates a fixed number of frames (5 for CogVideo, 16 for 
 {: style="text-align: justify"}
 
 <figure>
-  <img src="assets/img/super_resolution1.png" width="600" />
+  <img src="assets/img/super_resolution1.png" width="670" />
   <figcaption>Figure 7. SRR.</figcaption>
 </figure>
 &nbsp;
