@@ -179,13 +179,17 @@ Here we show a low-resolution video upsampled using bilinear interpolation (left
 In this post, we have described the foundational building blocks of Text-to-Video generation of two popular models, Google's Imagen Video and Meta's Make-a-Video. Although these two methods have various differences, they build off of similar theory and similar building blocks. In *Figure 9*, we visually demonstrate how each of the consituent building blocks discussed in this post fit together to construct the larger Text-to-Video model.
 
 <figure>
-  <img src="assets/img/T2V_building_blocks2.png" width="700" />
+  <img src="assets/img/T2V_building_blocks3.png" width="700" />
   <figcaption>Figure 9.</figcaption>
 </figure>
 &nbsp;  
 
-**(1) Latent Decoder**: An autoencoder encoding-decoding network demonstrates how data can be compressed into a low-dimensional latent representation and then by selecting different points in this latent space, new outputs are generated.&nbsp;  
-**(2) Testing** number one.
+1. **Latent Decoder:** An autoencoder encoding-decoding network demonstrates how data can be compressed into a low-dimensional latent representation and then by selecting different points in this latent space, new outputs are generated.
+2. **Latent Diffusion:** Training an encoding-decoding network with the stable diffusion process allows completely new images to be generated from latents with added noise. In a Text-to-Video model, image "batches" are generated from a single noisy latent put through the trained decoder to create a new, unseen videos at low FPS and low resolution.
+3. **2D U-Net:** To retain import information during the latent space compression encoding-decoding process, skip connections are added to tether the encoder with the decoder. This is a data-efficient architecture called a U-Net that is used in the encoding-decoding process of Text-to-Image.
+4. **3D U-Net:** The 3D U-Net is an extension of the Text-to-Image 2D U-Net for Text-to-Video generation. Since it is computationally expensive to expand 2D convolution and attention into 3D naively, psuedo 3D convolution and attention are constructed by concatenating 2D and 1D spatial and temporal layers, respectively.
+5. **Attention:** To determine which features to pay attention to during spatial and temporal training, attention layers are added. In a Text-to-Video model, attention helps create realistic videos by connecting important features in each frame and across frames using fewer parameters than a standard fully-connected layer would require.
+6. **Super-Resolution:** Upsampling in both the spatial and temporal dimensions increases the video resolution and framerate, respectively. In Text-to-Video, when new, noisy latents are decoded, each latent is instantiated with the same noise to improve detail hallucination and temporal consistency.
 
 
 ##### **Limitations of Text-to-Video**
