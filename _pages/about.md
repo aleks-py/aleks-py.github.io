@@ -15,7 +15,7 @@ social: false  # includes social icons at the bottom of the page
 ### Google's Imagen Video and Meta's Make-a-Video Explained
 
 <figure>
-  <iframe height="400px" width="600px" src="https://attn-gui.onrender.com/"></iframe>
+  <iframe height="900px" width="770px" src="https://video-gui.onrender.com/"></iframe>
 </figure>
 
 Just six months after the release of DALL-E 2, both Meta and Google released novel text-to-video generation models that output impressive video-format content. These networks build off of recent advancements in text-to-image modeling using stable diffusion (like DALL-E and Imagen). Meta’s Make-A-Video is capable of five second 768x768 clips at variable frame rates while Google’s Imagen Video can produce 1280×768 videos at 24 fps. These generators are capable of creating high-resolution, photorealistic and stylistic content of impossible scenarios. These networks can be powerful tools for artists and creators as well as the basis for predicting future frames of a video.
@@ -95,6 +95,10 @@ The U-Net architecture (which we use as a noise detector) is an auto-encoder. Do
 
 However, the poor feature representation in the initial layers result in redundant information. To deal with this, we can add attention layers at the skip connections to suppress activation in irrelevant regions, reducing the number of redundant features brought across. For Text-to-Image generation, these attention networks also have access to the text embeddings to help condition the attention.
 {: style="text-align: justify"}
+
+<figure>
+  <iframe height="400px" width="600px" src="https://attn-gui.onrender.com/"></iframe>
+</figure>
 
 ## **Text-to-Video Generation**
 
