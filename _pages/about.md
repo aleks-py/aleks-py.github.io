@@ -16,7 +16,7 @@ Just six months after the release of DALL-E 2, both Meta and Google released nov
 {: style="text-align: justify"}
 
 ## **History of Text-to-Video**
-Video generation has progressed rapidly in the past decade. Early video generation models focused on simple, specific domains and next frame prediction with **deterministic autoregressive** methods [CDNA, PredRNN]. Later video prediction models incorporated stochasticity [SV2P]. Another line of work uses generative models, namely **GANs** to synthesize complex scenes without a first frame [VGAN, TGAN]. More recently, text-to-video has been approached with **VQVAEs** to learn latent representations of video frames and then **autoregressive transformers** to generate video samples [NUWA & GODIVA]. This technique allows for open-domain video generation, but frames are still generated one at a time chronologically, resulting in potentially poor text-video alignment. CogVideo adjusts the training procedure to fix alignment (discussed below) and uses pre-trained text-to-image weights [CogVideo]. Make-A-Video and Imagen Video both use **diffusion models**, which we will discuss in the next section.
+Video generation has progressed rapidly in the past decade. Early video generation models focused on simple, specific domains and next frame prediction with **deterministic autoregressive** methods [CDNA, PredRNN]. Later video prediction models incorporated stochasticity [SV2P]. Another line of work uses generative models, namely **GANs** to synthesize complex scenes without a first frame [VGAN, TGAN]. More recently, text-to-video has been approached with **VQVAEs** to learn latent representations of video frames and then **autoregressive transformers** to generate video samples [GODIVA & NUWA]. This technique allows for open-domain video generation, but frames are still generated one at a time chronologically, resulting in potentially poor text-video alignment. CogVideo adjusts the training procedure to fix alignment (discussed below) and uses pre-trained text-to-image weights [CogVideo]. Make-A-Video and Imagen Video both use **diffusion models**, which we will discuss in the next section.
 {: style="text-align: justify"}
 
 Make-A-Video and Imagen Video have come out just six months after Open-AI’s DALL-E 2. Text to video is a much harder problem than text to image because we don’t have access to as many labeled text-image pairs. Therefore, all the models we highlight take advantage of starting from an existing Text-to-Image model with pre-trained or frozen weights. Moreover, beyond just generating pixels, the network has to predict how they will all evolve over time to coherently complete any actions in the text prompt.
@@ -116,20 +116,22 @@ Imagen Video’s approach relies on **cascaded video diffusion models**. They ge
 Make-A-Video’s initially interpolates frames and then increases the spatial resolution with two super-resolution layers. The first super-resolution layer operates across spatial and temporal dimensions. The second super-resolution layer only operates across the spatial dimension because of memory and space constraints. However, spatial upsampling requires detail hallucination which needs to be consistent across frames (hence the use of the temporal dimension in the previous layer). To deal with this, they use the same noise initialization for each frame to encourage consistent detail hallucination across frames.
 {: style="text-align: justify"}
 
-<div class="row">
-  <div class="column">
+<div>
+  <div>
     <video controls autoplay muted loop src="assets/img/frey_orig.mp4" style="width:200px"
     type="video/mp4">
   </div>
-  <div class="column">
+  <div>
     <video controls autoplay muted loop src="assets/img/frey_16x.mp4" style="width:200px"
     type="video/mp4">
   </div>
-  <div class="column">
-    <video controls autoplay muted loop src="assets/img/artifacts.mp4" style="width:200px"
+  <div>
+    <video controls autoplay muted loop src="assets/img/artifacts.mp4"
+    style="width:200px;position:absolute;margin-left:200"
     type="video/mp4">
   </div>
 </div>
+&nbsp;  
 
 ## **Conclusions**
 As beautiful as many of these videos are . . .
