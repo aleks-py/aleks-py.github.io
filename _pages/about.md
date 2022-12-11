@@ -53,26 +53,21 @@ We’ll break down the building blocks to make text-to-video generation possible
 
 ## **Text-to-Image Generation**
 ##### **What is latent space?**
-Text to Image uses stable diffusion in latent space and a 2D U-Net architecture for image generation (see link for more details). First let’s explain how **auto-encoders** work:
+Text-to-Image generation uses stable diffusion in latent space and a 2D U-Net architecture for image generation (see link for more details). First let’s explain how **auto-encoders** work:
 {: style="text-align: justify"}
 
 <figure>
   <img src="assets/img/autoencoder1.png" width="500" />
-  <figcaption>Figure 3. Demonstration of an autoencoder network. Images get compressed into lower-dimensional embeddings that are later decoded and "reconstructed". Training this autoencoder network sets the weights for the encoder and decoder such that when new
-  images, unseen by the network during training are passed through, brand new images
-  are generated.</figcaption>
+  <figcaption>Figure 3. Demonstration of an autoencoder network. Images get compressed into lower-dimensional embeddings that are later decoded and "reconstructed". Training this autoencoder network learns weights for the decoder, such that when randomly sampled embeddings from Z are passed through the decoder, D, brand new images unseen by the network before are generated.</figcaption>
 </figure>
 &nbsp;
 
-Here an input image is encoded into a lower-dimensional latent space representation and a decoder can reconstruct the image. This network is trained by comparing the input to the reconstructed output.
-{: style="text-align: justify"}
-
-Sampling within the latent space distribution allows us to generate realistic outputs.
+Here an input image is encoded into a lower-dimensional latent space representation and a decoder can reconstruct the image. This network is trained by comparing the input to the reconstructed output. Sampling within the latent space distribution allows us to generate realistic outputs.
 {: style="text-align: justify"}
 
 &nbsp;  
 <callout>
-Try it out yourself! We’ve trained an autoencoder with a two-dimensional latent space embedding. The two latents happen to correspond to expression and pose (the two variables changed in the dataset). Drag your cursor through latent space to change the values of the latent variable, Z, and see how the reconstructed image from the decoder changes:
+Try it out yourself! We’ve trained an autoencoder with a two-dimensional latent space embedding from the [Frey Faces Dataset](https://cs.nyu.edu/~roweis/data.html). The two latents happen to correspond to expression and pose (the two variables changed in the dataset). Drag your cursor through latent space to change the values of the latent variable, Z, and see how the reconstructed image from the decoder changes:
 </callout>
 <figure>
   <iframe height="420px" width="720px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://vae-gui.onrender.com/"></iframe>
