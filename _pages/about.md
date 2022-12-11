@@ -23,7 +23,7 @@ Make-A-Video and Imagen Video have come out just six months after Open-AI’s DA
 {: style="text-align: justify"}
 
 <figure>
-  <img src="assets/img/timeline.png" width="770" />
+  <img src="assets/img/timeline.png" width="670" />
   <figcaption>Figure 1. Timeline of video generation and prediction techniques. The modern-day Text-to-Video generators each leverage the capabilities of massively pre-trained Text-to-Image networks, such as Imagen and DALL-E 2.</figcaption>
 </figure>
 &nbsp;  
