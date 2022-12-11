@@ -227,5 +227,7 @@ Several advancements have been achieved with the methods described in this post,
 
 #### **References**
 [1] EE
+
 [2] AA
+
 [3] AB
