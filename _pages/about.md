@@ -186,7 +186,7 @@ Bringing all the foundational building blocks together, we can now build the ful
 
 
 ## **Conclusions**
-As beautiful as many of these videos are . . .
+**As beautiful as many of these videos are . . .**
 {: style="text-align: justify"}
 
 <figure>
@@ -194,8 +194,13 @@ As beautiful as many of these videos are . . .
   </video>
 </figure>
 
-Not all of them are perfect:
+**Not all of them are perfect . . .**
 {: style="text-align: justify"}
+
+<figure>
+  <video autoplay muted loop src="https://imagen.research.google/video/hdvideos/14.mp4" width="670" type="video/mp4">
+  </video>
+</figure>
 
 While text-to-video generation can substantially expand the creative toolbox available to artists and creators, key issues should be addressed before these networks become publicly available. Misuse of the models can result in fake, explicit, hateful, or otherwise generally harmful content. To help address this, additional classifiers can be trained to filter text inputs and video outputs. Moreover, the outputs reflect the composition of the training dataset, which include some problematic data and social biases and stereotypes.
 {: style="text-align: justify"}
