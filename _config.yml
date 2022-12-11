@@ -2,7 +2,7 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title:  # the website title (if blank, full name will be used instead)
+title: test # the website title (if blank, full name will be used instead)
 first_name: Building Blocks of Text-to-Video Generation
 middle_name:
 last_name:
