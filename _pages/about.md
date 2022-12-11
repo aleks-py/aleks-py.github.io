@@ -129,7 +129,7 @@ Make-A-Video uses **frame rate conditioning**, meaning they have an additional i
 {: style="text-align: justify"}
 
 <figure>
-  <img src="assets/img/masking1.png" width="500" />
+  <img src="assets/img/masking2.png" width="500" />
   <figcaption>Figure 8.</figcaption>
 </figure>
 &nbsp;
