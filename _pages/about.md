@@ -20,10 +20,13 @@ Just six months after the release of DALL-E 2, both Meta and Google released nov
 
 ## **History of Text-to-Video**
 Video generation has progressed rapidly in the past decade. Early video generation models focused on simple, specific domains and next frame prediction with **deterministic autoregressive** methods [CDNA, PredRNN]. Later video prediction models incorporated stochasticity [SV2P]. Another line of work uses generative models, namely **GANs** to synthesize complex scenes without a first frame [VGAN, TGAN]. More recently, text-to-video has been approached with **VQVAEs** to learn latent representations of video frames and then **autoregressive transformers** to generate video samples [NUWA & GODIVA]. This technique allows for open-domain video generation, but frames are still generated one at a time chronologically, resulting in potentially poor text-video alignment. CogVideo adjusts the training procedure to fix alignment (discussed below) and uses pre-trained text-to-image weights [CogVideo]. Make-A-Video and Imagen Video both use **diffusion models**, which we will discuss in the next section.
+{: style="text-align: justify"}
 
 Make-A-Video and Imagen Video have come out just six months after Open-AI’s DALL-E 2. Text to video is a much harder problem than text to image because we don’t have access to as many labeled text-image pairs. Therefore, all the models we highlight take advantage of starting from an existing Text-to-Image model with pre-trained or frozen weights. Moreover, beyond just generating pixels, the network has to predict how they will all evolve over time to coherently complete any actions in the text prompt.
+{: style="text-align: justify"}
 
-In this post, we’ll break down the building blocks to make text-to-video generation possible, starting from a brief overview of how text to image generators use stable diffusion, how to make the components 3D to incorporate temporal information for video generation, and how to increase the spatial and temporal resolution.
+In this post, we’ll break down the building blocks to make text-to-video generation possible, starting from a brief overview of how text to image generators use stable [link](https://google.com) diffusion, how to make the components 3D to incorporate temporal information for video generation, and how to increase the spatial and temporal resolution.
+{: style="text-align: justify"}
 
 We’ll focus on how these components make up Make-A-Video and Imagen Video, but also touch on CogVideo (an open-source text to image video generator that uses a VQVAE + autoregressive transformers architecture).
 
