@@ -62,13 +62,13 @@ Text-to-Image generation uses stable diffusion in latent space and a 2D U-Net ar
 </figure>
 &nbsp;
 
-Here an input image is encoded into a lower-dimensional latent space representation and a decoder can reconstruct the image. This network is trained by comparing the input to the reconstructed output. Sampling within the latent space distribution allows us to generate realistic outputs.
+Here an input image is encoded into a lower-dimensional latent space representation and a decoder can reconstruct the image. This network is trained on the [Frey Faces Dataset](https://cs.nyu.edu/~roweis/data.html) by comparing the input to the reconstructed output. Sampling within the latent space distribution allows us to generate realistic outputs.
 {: style="text-align: justify"}
 
 &nbsp;  
 <callout>
 
-Try it out yourself! We’ve trained an autoencoder with a two-dimensional latent space embedding from the [Frey Faces Dataset](https://cs.nyu.edu/~roweis/data.html). The two latents happen to correspond to expression and pose (the two variables changed in the dataset). Drag your cursor through latent space to change the values of the latent variable, Z, and see how the reconstructed image from the decoder changes:
+Try it out yourself! We’ve trained an autoencoder with a two-dimensional latent space embedding. The two latents happen to correspond to expression and pose (the two variables changed in the dataset). Drag your cursor through latent space to change the values of the latent variable, Z, and see how the reconstructed image from the decoder changes:
 
 </callout>
 <figure>
