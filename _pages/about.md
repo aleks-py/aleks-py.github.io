@@ -163,13 +163,14 @@ Make-A-Video’s approach initially interpolates frames and then increases the s
 {: style="text-align: justify"}
 
 <callout>
-Here we show a low-resolution video upsampled using bilinear interpolation (left) and the same video upsampled using a neural networks applied to each individual frame (middle). We see flickering artifacts because upsampling was performed separately per frame, rather than hallucinating detail across frames. The difference map (right) highlights the differences between the left and middle videos to demonstrate the flickering effect that occurs in a video when upsampled without proper detail hallucination to maintain temporal coherency. The video generation models we discuss actively consider temporal coherency while hallucinating details during upsampling to avoid these artifacts
+Here we show a low-resolution video upsampled using bilinear interpolation (left) and the same video upsampled using a nsuper-resolution eural networks applied to each individual frame (middle). We see flickering artifacts because upsampling was performed separately per frame, rather than hallucinating detail across frames. The difference map (right) highlights the differences between the left and middle videos to demonstrate the flickering effect that occurs in a video when upsampled without proper detail hallucination to maintain temporal coherency. The video generation models we discuss actively consider temporal coherency while hallucinating details during upsampling to avoid these artifacts
 </callout>
 <figure>
   <video autoplay muted loop src="assets/img/artifacts_stack1.mp4"
       style="width:500px"
       type="video/mp4">
   </video>
+  <figcaption>(left) Video frames upsampled using bilinear interpolation. (middle) Video frames upsampled using a super-resolution neural network. (right) Difference map between each frame of the left and middle videos.</figcaption>
 </figure>
 &nbsp;
 
