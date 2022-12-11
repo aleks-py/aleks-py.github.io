@@ -159,16 +159,17 @@ Make-A-Video uses **frame rate conditioning**, meaning they have an additional i
 Imagen Video’s approach relies on **cascaded video diffusion models**. They generate entire blocks of frames simultaneously for each network to avoid the artifacts that would result from running super-resolution on independent frames. Each of the 6 super-resolution sub-models after the base video diffusion model, shown in *Figure 7 (top)*, focuses on either temporal or spatial upsampling. While the base model (the video decoder at the lowest frame rate/resolution) uses a temporal attention layer to model long-term temporal dependencies, the super-resolution models only use temporal convolution layers for computational efficiency while still maintaining local temporal consistency. Similarly, spatial attention is only used in the base and first two spatial super-resolution models, while the rest only use convolution.
 {: style="text-align: justify"}
 
-Make-A-Video’s approach initially interpolates frames and then increases the spatial resolution with two super-resolution layers, shown in *Figure 7 (bottom)*. The first super-resolution layer operates across spatial and temporal dimensions. The second super-resolution layer only operates across the spatial dimension because of memory and space constraints. However, spatial upsampling requires detail hallucination which needs to be consistent across frames (hence the use of the temporal dimension in the previous layer). To deal with this, they use the same noise initialization for each frame to encourage consistent detail hallucination across frames.
+Make-A-Video’s approach initially interpolates frames and then increases the spatial resolution with two super-resolution layers, shown in *Figure 7 (bottom)*. The first super-resolution layer operates across spatial and temporal dimensions. The second super-resolution layer only operates across the spatial dimension because of memory and space constraints. However, spatial upsampling requires **detail hallucination** which needs to be consistent across frames (hence the use of the temporal dimension in the previous layer). To deal with this, they use the same noise initialization for each frame to encourage consistent detail hallucination across frames.
 {: style="text-align: justify"}
 
-
+<callout>
+Here we show a low-resolution video upsampled using bilinear interpolation (left) and the same video upsampled using a neural networks applied to each individual frame (middle). We see flickering artifacts because upsampling was performed separately per frame, rather than hallucinating detail across frames. The difference map (right) highlights the differences between the left and middle videos to demonstrate the flickering effect that occurs in a video when upsampled without proper detail hallucination to maintain temporal coherency. The video generation models we discuss actively consider temporal coherency while hallucinating details during upsampling to avoid these artifacts
+</callout>
 <figure>
   <video autoplay muted loop src="assets/img/artifacts_stack1.mp4"
       style="width:500px"
       type="video/mp4">
   </video>
-  <figcaption>Figure 4. Stable diffusion.</figcaption>
 </figure>
 &nbsp;
 
