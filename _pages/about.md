@@ -140,7 +140,7 @@ The base video decoder creates a fixed number of frames (5 frame for CogVideo, 1
 
 <figure>
   <img src="assets/img/super_resolution1.png" width="670" />
-  <figcaption>Figure 7. Text-to-Video architectures of Imagen Video and Make-A-Video. Light blue boxes represent temporal upsampling steps and darker blue boxes are for spatial upsampling.</figcaption>
+  <figcaption>Figure 7. Text-to-Video architectures of Imagen Video (top) and Make-A-Video (bottom). Light blue boxes represent temporal upsampling steps and darker blue boxes are for spatial upsampling.</figcaption>
 </figure>
 &nbsp;
 
@@ -156,10 +156,10 @@ Make-A-Video uses **frame rate conditioning**, meaning they have an additional i
 </figure>
 &nbsp;
 
-Imagen Video’s approach relies on **cascaded video diffusion models**. They generate entire blocks of frames simultaneously for each network to avoid the artifacts that would result from running super-resolution on independent frames. Each of the 6 super-resolution sub-models after the base video diffusion model focuses on either temporal or spatial upsampling. While the base model (the video decoder at the lowest frame rate/resolution) uses a temporal attention layer to model long-term temporal dependencies, the super-resolution models only use temporal convolution layers for computational efficiency while still maintaining local temporal consistency. Similarly, spatial attention is only used in the base and first two spatial super-resolution models, while the rest only use convolution.
+Imagen Video’s approach relies on **cascaded video diffusion models**. They generate entire blocks of frames simultaneously for each network to avoid the artifacts that would result from running super-resolution on independent frames. Each of the 6 super-resolution sub-models after the base video diffusion model, shown in *Figure 7 (top)*, focuses on either temporal or spatial upsampling. While the base model (the video decoder at the lowest frame rate/resolution) uses a temporal attention layer to model long-term temporal dependencies, the super-resolution models only use temporal convolution layers for computational efficiency while still maintaining local temporal consistency. Similarly, spatial attention is only used in the base and first two spatial super-resolution models, while the rest only use convolution.
 {: style="text-align: justify"}
 
-Make-A-Video’s initially interpolates frames and then increases the spatial resolution with two super-resolution layers. The first super-resolution layer operates across spatial and temporal dimensions. The second super-resolution layer only operates across the spatial dimension because of memory and space constraints. However, spatial upsampling requires detail hallucination which needs to be consistent across frames (hence the use of the temporal dimension in the previous layer). To deal with this, they use the same noise initialization for each frame to encourage consistent detail hallucination across frames.
+Make-A-Video’s approach initially interpolates frames and then increases the spatial resolution with two super-resolution layers, shown in *Figure 7 (bottom)*. The first super-resolution layer operates across spatial and temporal dimensions. The second super-resolution layer only operates across the spatial dimension because of memory and space constraints. However, spatial upsampling requires detail hallucination which needs to be consistent across frames (hence the use of the temporal dimension in the previous layer). To deal with this, they use the same noise initialization for each frame to encourage consistent detail hallucination across frames.
 {: style="text-align: justify"}
 
 
