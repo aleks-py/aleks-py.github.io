@@ -32,7 +32,7 @@ In this post, we’ll break down the building blocks to make text-to-video gener
 {: style="text-align: justify"}
 
 <figure>
-  <img src="assets/img/T2V.png" width="700" />
+  <img src="assets/img/T2V.png" width="600" />
   <figcaption>Figure 2. Network diagram for a general Text-to-Video workflow.
   Text-to-Image encodings are trained to be decoded into image "batches", e.g.,
   videos, that get upsampled spatially and temporally.</figcaption>
