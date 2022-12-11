@@ -22,7 +22,7 @@ Google and Meta have both developed advanced AI networks that can generate new, 
   <iframe height="600px" width="840px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://video-gui.onrender.com/"></iframe>
 </figure1>
 
-In this post, we dissect and explain the mechanics behind the key building blocks for state-of-the-art Text-to-Video generation. We provide interactive examples of these building blocks as well as illustrate how each of these building blocks fit together for two Text-to-Video models, Imagen Video and Make-a-Video. Finally, we describe the similarities and differences between these two models as well as their failure cases.
+In this post, we dissect and explain the mechanics behind the key building blocks for state-of-the-art Text-to-Video generation. We provide interactive examples of these building blocks and demonstrate the key novelties/differences between two Text-to-Video models: Imagen Video and Make-a-Video. Finally, we summarize by building up the complete framework of a Text-to-Video model from the building blocks as well as noting the current failure modes and limitations of the models today.
 {: style="text-align: justify"}
 
 ## **History of Text-to-Video**
