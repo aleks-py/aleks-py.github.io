@@ -90,7 +90,7 @@ During the forward process, we create a dataset by incrementally adding more noi
 &nbsp;  
 
 
-The U-Net architecture (which we use as a noise detector) is an auto-encoder. Downsampling and upsampling is done with convolutional layers. However, because the latent space is lower-dimensional, it’s possible to lose information, meaning that spatial recreation can be imprecise during upsampling. To deal with this, U-Net has **skip connections** that provide access to spatial information during downsampling.
+The U-Net architecture (which we use as a noise detector) is an **autoencoder**. Downsampling and upsampling is done with convolutional layers. However, because the latent space is lower-dimensional, it’s possible to lose information, meaning that spatial recreation can be imprecise during upsampling. To deal with this, U-Net has **skip connections** that transfer information across the network, bypassing the downsampling and compression.
 {: style="text-align: justify"}
 
 <figure>
@@ -133,7 +133,7 @@ Separating the spatial and temporal operations allows for **building off of exis
 {: style="text-align: justify"}
 
 ## **Spatial and Temporal Super Resolution**
-The base video decoder creates a fixed number of frames (5 for CogVideo, 16 for Make-A-Video, and 15 for Imagen Video) that need to be upsampled temporally and spatially.
+The base video decoder creates a fixed number of frames (5 frame for CogVideo, 16 frames for Make-A-Video, and 15 frames for Imagen Video) that need to be upsampled temporally and spatially.
 {: style="text-align: justify"}
 
 <figure>
