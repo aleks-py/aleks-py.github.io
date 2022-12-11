@@ -153,6 +153,16 @@ Make-A-Video’s initially interpolates frames and then increases the spatial re
 &nbsp;
 
 
+## **Putting the Building Blocks Together**
+Bringing all the foundational building blocks together, we can now build the full Text-to-Video assembly.
+
+<figure>
+  <img src="assets/img/T2V_building_blocks.png" width="700" />
+  <figcaption>Figure 9.</figcaption>
+</figure>
+&nbsp;
+
+
 ## **Conclusions**
 As beautiful as many of these videos are . . .
 {: style="text-align: justify"}
