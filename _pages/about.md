@@ -50,7 +50,13 @@ Text to Image uses stable diffusion in latent space and a 2D U-Net architecture 
 First let’s explain how **auto-encoders** work:
 {: style="text-align: justify"}
 
-![autoencoder](assets/img/autoencoder.png)
+<figure>
+  <img src="assets/img/autoencoder.png" width="500" />
+  <figcaption>Figure 3. Demonstration of an autoencoder network. Images get compressed into lower-dimensional embeddings that are later decoded and "reconstructed". Training this autoencoder network sets the weights for the encoder and decoder such that when new
+  images, unseen by the network during training are passed through, brand new images 
+  are generated.</figcaption>
+</figure>
+&nbsp;
 
 Here an input image is encoded into a lower-dimensional latent space representation and a decoder can reconstruct the image. This network is trained by comparing the input to the reconstructed output.
 {: style="text-align: justify"}
