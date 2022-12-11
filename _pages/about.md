@@ -186,7 +186,7 @@ Bringing all the foundational building blocks together, we can now build the ful
 
 
 ##### **Limitations of Text-to-Video**
-**As beautiful as many of these videos are . . .**
+As beautiful as many of these videos are . . .
 {: style="text-align: justify"}
 
 <figure>
@@ -195,7 +195,7 @@ Bringing all the foundational building blocks together, we can now build the ful
 </figure>
 &nbsp;  
 
-**Not all of them are perfect . . .** (pay close attention to the legs of the elephant walking)
+Not all of them are perfect . . . *(pay close attention to the legs of the elephant walking)*
 {: style="text-align: justify"}
 
 <figure>
