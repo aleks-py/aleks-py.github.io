@@ -46,7 +46,7 @@ We’ll break down the building blocks to make text-to-video generation possible
 
 <figure>
   <img src="assets/img/T2V1.png" width="600" />
-  <figcaption>Figure 2. A simplified foundational network diagram for Text-to-Video generation that leverages Text-to-Image encodings. These encodings are trained to be decoded into image "batches", e.g., videos, that get upsampled spatially and temporally to have higher framerates and higher resolution. Scroll to Figure 9 to see each of these building blocks in more detail and how they fit together.</figcaption>
+  <figcaption>Figure 2. A simplified foundational network diagram for Text-to-Video generation that leverages Text-to-Image encodings. These encodings are trained to be decoded into image "batches", e.g., videos, that get upsampled spatially and temporally to have higher framerates and higher resolution. Scroll to Figure 9 to see the building blocks in more detail and how they fit together.</figcaption>
 </figure>
 &nbsp;  
 
