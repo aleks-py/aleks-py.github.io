@@ -118,7 +118,8 @@ Make-A-Video’s initially interpolates frames and then increases the spatial re
 
 <div>
   <!-- <div> -->
-    <video controls autoplay muted loop src="assets/img/frey_orig.mp4" style="width:200px"
+    <video controls autoplay muted loop src="assets/img/frey_orig.mp4"
+    style="width:200px;position:absolute;margin-left:200"
     type="video/mp4">
 </div>
 <div>
