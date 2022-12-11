@@ -16,7 +16,7 @@ social: false  # includes social icons at the bottom of the page
 
 &nbsp;  
 <callout>
-Below is an **interactive example** of text prompts that Google and Meta used to generate new, unseen videos using AI. Try clicking through the prompts and compare the results between Google's Imagen Video and Meta's Make-a-Video models:
+Google and Meta have trained advanced networks that can generate new, unseen videos using simple text prompts. Try clicking through the prompts and compare the results between Google's Imagen Video and Meta's Make-a-Video models:
 </callout>
 <figure1>
   <iframe height="600px" width="840px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://video-gui.onrender.com/"></iframe>
