@@ -226,8 +226,30 @@ Several advancements have been achieved with the methods described in this post,
 * [Visual Foresight](https://sites.google.com/view/visualforesight?pli=1) predicts how an object will move given an action in pixel space for more practical robotics planning and control applications.
 
 #### **References**
-[[1] Ramesh, A. et al. Zero-Shot Text-to-Image Generation, 2021. *arXiv Preprint*.](https://arxiv.org/abs/2102.12092) # DALLE 1
+[[1] Ramesh, A. et al. Zero-Shot Text-to-Image Generation, 2021. *arXiv Preprint*.](https://arxiv.org/pdf/2102.12092)
 
-[2]
+[[2] Saharia, C. et al. Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding, 2022. *arXiv Preprint*.](https://arxiv.org/pdf/2205.11487)
 
-[3] AB
+[[3] Singer, U. et al. Make-a-Video: Text-to-Video Generation Without Text-Video Data, 2022. *arXiv Preprint*.](https://arxiv.org/pdf/2209.14792)
+
+[[4] Ho, J. et al. Imagen Video: High Definition Video Generation with Diffusion Models, 2022. *arXiv Preprint*.](https://arxiv.org/pdf/2210.02303)
+
+[[5] Finn, C. et al. Unsupervised Learning for Physical Interaction through Video Prediction, 2016. *30th Conference on Neural Information Processing Systems (NeurIPS)*.](https://proceedings.neurips.cc/paper/2016/file/d9d4f495e875a2e075a1a4a6e1b9770f-Paper.pdf)
+
+[[6] Wang, Y. et al. PredRNN: Recurrent Neural Networks for Predictive Learning using Spatiotemporal LSTMs, 2017. *30th Conference on Neural Information Processing Systems (NeurIPS)*.](https://papers.nips.cc/paper/2017/file/e5f6ad6ce374177eef023bf5d0c018b6-Paper.pdf)
+
+[[7] Babaeizadeh, M. et al. Stochastic Variational Video Prediction, 2018. *International Conference on Learning Representations (ICLR)*.](https://openreview.net/pdf?id=rk49Mg-CW)
+
+[[8] Zhai, S. et al. Generative Adversarial Networks as Variational Training of Energy Based Models, 2017. *arXiv Preprint*.](https://arxiv.org/pdf/1611.01799.pdf)
+
+[[9] Saito, M. et al. Temporal Generative Adversarial Nets with Singular Value Clipping, 2016. *arXiv Preprint*.](https://arxiv.org/pdf/1611.06624)
+
+[[10] Wu, C. et al. GODIVA: Generating Open-DomaIn Videos from nAtural Descriptions, 2021. *arXiv Preprint*.](https://arxiv.org/pdf/2104.14806)
+
+[[11] Wu, C. et al. NÜWA: Visual Synthesis Pre-training for Neural visUal World creAtion, 2021. *arXiv Preprint*.](https://arxiv.org/pdf/2111.12417)
+
+[[12] Hong, W. et al. CogVideo: Large-scale Pretraining for Text-to-Video Generation via Transformers, 2022. *arXiv Preprint*.](https://arxiv.org/pdf/2205.15868)
+
+[[13] Kingma, D. P. et al. Variational Diffusion Models, 2021. *35th Conference on Neural Information Processing Systems (NeurIPS)*.](https://openreview.net/pdf?id=2LdBqxc1Yv)
+
+[[14] Ding, M. et al. CogView: Mastering Text-to-Image Generation via Transformers, 2021. *35th Conference on Neural Information Processing Systems (NeurIPS)*.](https://proceedings.neurips.cc/paper/2021/file/a4d92e2cd541fca87e4620aba658316d-Paper.pdf)
