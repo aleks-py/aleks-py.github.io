@@ -15,7 +15,7 @@ social: false  # includes social icons at the bottom of the page
 ### Google's Imagen Video and Meta's Make-a-Video Explained
 
 <figure1>
-  <iframe height="600px" width="840px" frameBorder="0" src="https://video-gui.onrender.com/"></iframe>
+  <iframe height="600px" width="840px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://video-gui.onrender.com/"></iframe>
 </figure1>
 
 Just six months after the release of DALL-E 2, both Meta and Google released novel text-to-video generation models that output impressive video-format content. These networks build off of recent advancements in text-to-image modeling using stable diffusion (like DALL-E and Imagen). Meta’s Make-A-Video is capable of five second 768x768 clips at variable frame rates while Google’s Imagen Video can produce 1280×768 videos at 24 fps. These generators are capable of creating high-resolution, photorealistic and stylistic content of impossible scenarios. These networks can be powerful tools for artists and creators as well as the basis for predicting future frames of a video.
@@ -71,7 +71,7 @@ Sampling within the latent space distribution allows us to generate realistic ou
 {: style="text-align: justify"}
 
 <figure>
-  <iframe height="420px" width="720px" frameBorder="0" src="https://vae-gui.onrender.com/"></iframe>
+  <iframe height="420px" width="720px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://vae-gui.onrender.com/"></iframe>
 </figure>
 
 We train our network using **stable diffusion**.
@@ -101,7 +101,7 @@ However, the poor feature representation in the initial layers result in redunda
 {: style="text-align: justify"}
 
 <figure>
-  <iframe height="400px" width="600px" frameBorder="0" src="https://attn-gui.onrender.com/"></iframe>
+  <iframe height="400px" width="600px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://attn-gui.onrender.com/"></iframe>
 </figure>
 
 ## **Text-to-Video Generation**
