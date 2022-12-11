@@ -22,7 +22,9 @@ Google and Meta have both developed advanced AI networks that can generate new, 
   <iframe height="600px" width="840px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://video-gui.onrender.com/"></iframe>
 </figure1>
 
-Just six months after the release of DALL-E 2, both Meta and Google released novel text-to-video generation models that output impressive video-format content. These networks build off of recent advancements in text-to-image modeling using stable diffusion (like DALL-E and Imagen). Meta’s Make-A-Video is capable of five second 768x768 clips at variable frame rates while Google’s Imagen Video can produce 1280×768 videos at 24 fps. These generators are capable of creating high-resolution, photorealistic and stylistic content of impossible scenarios. These networks can be powerful tools for artists and creators as well as the basis for predicting future frames of a video.
+In this post, we dissect and explain the mechanics behind the key building blocks for state-of-the-art Text-to-Video generation. We provide interactive examples of these building blocks as well as illustrate how each of these building blocks fit into the bigger picture models, such as Imagen Video and Make-a-Video. Finally, we describe the similarities and differences between the Imagen Video and Make-a-Video models as well as the cases where these models fail.
+
+Just six months after the release of DALL-E 2, both Meta and Google released novel Text-to-Video generation models that output impressive video-format content. These networks build off of recent advancements in Text-to-Image modeling using stable diffusion (like DALL-E and Imagen). Meta’s Make-A-Video is capable of five second 768x768 clips at variable frame rates while Google’s Imagen Video can produce 1280×768 videos at 24 fps. These generators are capable of creating high-resolution, photorealistic and stylistic content of impossible scenarios. These networks can be powerful tools for artists and creators as well as the basis for predicting future frames of a video.
 {: style="text-align: justify"}
 
 ## **History of Text-to-Video**
