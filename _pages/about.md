@@ -10,7 +10,7 @@ news: false  # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 ---
-# **<span style="font-size:40px;">Building Blocks of Text-to-Video Generation</span>**
+# **<span style="font-size:38px;">Building Blocks of Text-to-Video Generation</span>**
 
 ### Google's Imagen Video and Meta's Make-a-Video Explained
 
