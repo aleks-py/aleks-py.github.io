@@ -201,6 +201,7 @@ Bringing all the foundational building blocks together, we can now build the ful
   <video autoplay muted loop src="https://imagen.research.google/video/hdvideos/14.mp4" width="600" type="video/mp4">
   </video>
 </figure>
+&nbsp;  
 
 While text-to-video generation can substantially expand the creative toolbox available to artists and creators, key issues should be addressed before these networks become publicly available. Misuse of the models can result in fake, explicit, hateful, or otherwise generally harmful content. To help address this, additional classifiers can be trained to filter text inputs and video outputs. Moreover, the outputs reflect the composition of the training dataset, which include some problematic data and social biases and stereotypes.
 {: style="text-align: justify"}
