@@ -195,13 +195,15 @@ Bringing all the foundational building blocks together, we can now build the ful
 </figure>
 &nbsp;  
 
-**Not all of them are perfect . . .**
+**Not all of them are perfect . . .** (pay close attention to the legs of the elephant walking)
 {: style="text-align: justify"}
 
 <figure>
   <video autoplay muted loop src="https://imagen.research.google/video/hdvideos/14.mp4" width="600" type="video/mp4">
   </video>
 </figure>
+
+Although Imagen Video and Make-a-Video have made signficant progress in temporal coherency to remove flickering effects, complex
 
 While text-to-video generation can substantially expand the creative toolbox available to artists and creators, key issues should be addressed before these networks become publicly available. Misuse of the models can result in fake, explicit, hateful, or otherwise generally harmful content. To help address this, additional classifiers can be trained to filter text inputs and video outputs. Moreover, the outputs reflect the composition of the training dataset, which include some problematic data and social biases and stereotypes.
 {: style="text-align: justify"}
