@@ -176,13 +176,16 @@ Here we show a low-resolution video upsampled using bilinear interpolation (left
 
 ## **Conclusions**
 ##### **Putting Together All The Building Blocks**
-Bringing all the foundational building blocks together, we can now build the full Text-to-Video assembly.
+In this post, we have described the foundational building blocks of Text-to-Video generation of two popular models, Google's Imagen Video and Meta's Make-a-Video. Although these two methods have various differences, they build off of similar theory and similar building blocks. In *Figure 9*, we visually demonstrate how each of the consituent building blocks discussed in this post fit together to construct the larger Text-to-Video model.
 
 <figure>
   <img src="assets/img/T2V_building_blocks2.png" width="700" />
   <figcaption>Figure 9.</figcaption>
 </figure>
 &nbsp;  
+
+1. **Latent Diffusion**
+2. **Testing** number one. 
 
 
 ##### **Limitations of Text-to-Video**
