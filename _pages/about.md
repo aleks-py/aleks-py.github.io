@@ -185,7 +185,7 @@ In this post, we have described the foundational building blocks of Text-to-Vide
 &nbsp;  
 
 1. **Latent Diffusion**
-2. **Testing** number one. 
+2. **Testing** number one.
 
 
 ##### **Limitations of Text-to-Video**
