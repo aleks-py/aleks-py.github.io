@@ -116,22 +116,20 @@ Imagen Video’s approach relies on **cascaded video diffusion models**. They ge
 Make-A-Video’s initially interpolates frames and then increases the spatial resolution with two super-resolution layers. The first super-resolution layer operates across spatial and temporal dimensions. The second super-resolution layer only operates across the spatial dimension because of memory and space constraints. However, spatial upsampling requires detail hallucination which needs to be consistent across frames (hence the use of the temporal dimension in the previous layer). To deal with this, they use the same noise initialization for each frame to encourage consistent detail hallucination across frames.
 {: style="text-align: justify"}
 
-<div>
+
   <!-- <div> -->
-    <video controls autoplay muted loop src="assets/img/frey_orig.mp4"
+<video autoplay muted loop src="assets/img/frey_orig.mp4"
     style="width:200px;position:absolute;margin-left:200"
     type="video/mp4">
-</div>
-<div>
-    <video controls autoplay muted loop src="assets/img/frey_16x.mp4" style="width:200px"
-    type="video/mp4">
-</div>
-<div>
-    <video controls autoplay muted loop src="assets/img/artifacts.mp4"
+</video>
+<video autoplay muted loop src="assets/img/frey_16x.mp4"
     style="width:200px;position:absolute;margin-left:200"
     type="video/mp4">
-</div>
-<!-- </div> -->
+</video>
+<video autoplay muted loop src="assets/img/artifacts.mp4"
+    style="width:200px;position:absolute;margin-left:200"
+    type="video/mp4">
+</video>
 &nbsp;  
 
 ## **Conclusions**
