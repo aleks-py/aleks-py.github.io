@@ -227,6 +227,7 @@ Several advancements have been achieved with the methods described in this post,
 
 #### **References**
 [[1] Ramesh, A. et al. Zero-Shot Text-to-Image Generation, 2021. *arXiv Preprint*.](https://arxiv.org/pdf/2102.12092)
+{: style="font-size: smaller"}
 
 [[2] Saharia, C. et al. Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding, 2022. *arXiv Preprint*.](https://arxiv.org/pdf/2205.11487)
 
