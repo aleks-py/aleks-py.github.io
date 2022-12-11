@@ -81,6 +81,12 @@ During the forward process, we create a dataset by incrementally adding more noi
 The U-Net architecture (which we use as a noise detector) is an auto-encoder. Downsampling and upsampling is done with convolutional layers. However, because the latent space is lower-dimensional, it’s possible to lose information, meaning that spatial recreation can be imprecise during upsampling. To deal with this, U-Net has **skip connections** that provide access to spatial information during downsampling.
 {: style="text-align: justify"}
 
+<figure>
+  <img src="assets/img/unet1.png" width="600" />
+  <figcaption>Figure 5. U-Net.</figcaption>
+</figure>
+&nbsp;
+
 However, the poor feature representation in the initial layers result in redundant information. To deal with this, we can add attention layers at the skip connections to suppress activation in irrelevant regions, reducing the number of redundant features brought across. For Text-to-Image generation, these attention networks also have access to the text embeddings to help condition the attention.
 {: style="text-align: justify"}
 
@@ -94,6 +100,12 @@ Text to image generation uses U-Net architecture with 2D spatial convolution and
 Make-A-Video creates pseudo 3D convolution and attention layers by stacking a 1D temporal layer over a 2D spatial layer. Imagen Video does spatial convolution and attention for each individual frame, then does temporal attention or convolution across all frames.
 {: style="text-align: justify"}
 
+<figure>
+  <img src="assets/img/attention1.png" width="770" />
+  <figcaption>Figure 6. Video.</figcaption>
+</figure>
+&nbsp;
+
 Separating the spatial and temporal operations allows for **building off of existing text-to-image models.**
 - CogVideo freezes all the weights of the spatial layers
 - Make-A-Video uses pretrained weights for the spatial layers but initializes the temporal layer weights to the identity matrix. This way they can continue tuning all weights with new video data
@@ -103,6 +115,12 @@ Separating the spatial and temporal operations allows for **building off of exis
 ## **Spatial and Temporal Super Resolution**
 The base video decoder creates a fixed number of frames (5 for CogVideo, 16 for Make-A-Video, and 15 for Imagen Video) that need to be upsampled temporally and spatially.
 {: style="text-align: justify"}
+
+<figure>
+  <img src="assets/img/super_resolution1.png" width="600" />
+  <figcaption>Figure 7. SRR.</figcaption>
+</figure>
+&nbsp;
 
 Make-A-Video uses **frame rate conditioning**, meaning they have an additional input that determines the fps in the generated video (unlike how Imagen Video has a fixed frame rate in each stage). During training, this is useful as a form of data augmentation due to the limited dataset of videos. CogVideo also highlights the importance of changing the frame rate in order to retime videos such that an entire action can be encompassed in a fixed video length. For example the action “drinking” is composed of the sub-actions “pick up glass,” “drink,” and “place glass” which need to be performed in that order. If training on videos of a fixed length, changing the frame rate can help ensure text-video alignment.
 {: style="text-align: justify"}
