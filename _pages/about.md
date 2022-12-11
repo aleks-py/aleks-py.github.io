@@ -184,8 +184,8 @@ In this post, we have described the foundational building blocks of Text-to-Vide
 </figure>
 &nbsp;  
 
-1. **Latent Decoder**: An autoencoder encoding-decoding network demonstrates how data can be compressed into a low-dimensional latent representation and then by selecting different points in this latent space, new outputs are generated.
-2. **Testing** number one.
+**(1) Latent Decoder**: An autoencoder encoding-decoding network demonstrates how data can be compressed into a low-dimensional latent representation and then by selecting different points in this latent space, new outputs are generated.&nbsp;  
+**(2) Testing** number one.
 
 
 ##### **Limitations of Text-to-Video**
