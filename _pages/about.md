@@ -95,7 +95,7 @@ The U-Net architecture (which we use as a noise detector) is an **autoencoder**.
 
 <figure>
   <img src="assets/img/unet1.png" width="770" />
-  <figcaption>Figure 5. U-Net Architecture. U-Net consists of a convolutional encoder and decoder. Skip connections copy and crop information from downsampling. Attention layers at skip connections help by weighting relevant information. Referenced from [U-Net].</figcaption>
+  <figcaption>Figure 5. U-Net architecture consists of a convolutional encoder and decoder. Skip connections copy and crop information from downsampling. Attention layers at skip connections help by weighting relevant information. Referenced from [U-Net].</figcaption>
 </figure>
 &nbsp;
 
