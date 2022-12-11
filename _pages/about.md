@@ -110,7 +110,7 @@ Try it out yourself! Click on different points in the first image and see how th
   <iframe height="400px" width="600px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://attn-gui.onrender.com/"></iframe>
 </figure>
 
-In the next section we discuss the use of attention in the spatial and temporal dimensions to move from image (2D spatial) representations to representations video (3D) = image (2D spatial) + time (1D temporal).
+In the next section we discuss the use of attention in the spatial and temporal dimensions to move from image *(2D spatial)* representations to representations video *(3D)* = image *(2D spatial)* + time *(1D temporal)*.
 
 ## **Text-to-Video Generation**
 
