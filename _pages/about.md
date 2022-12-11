@@ -26,10 +26,10 @@ In this post, we dissect and explain the mechanics behind the key building block
 {: style="text-align: justify"}
 
 ## **History of Text-to-Video**
-Just six months after the release of DALL-E 2, both Meta and Google released novel Text-to-Video generation models that output impressive video-format content. These networks build off of recent advancements in Text-to-Image modeling using stable diffusion (like DALL-E and Imagen). Meta’s Make-A-Video is capable of five second 768x768 clips at variable frame rates while Google’s Imagen Video can produce 1280×768 videos at 24 fps. Rather than generating video from text directly, both Imagen Video and Make-a-Video leverage the massive text-image pair databases to construct video from Text-to-Image generation models. These Text-to-Video generators are capable of creating high-resolution, photorealistic and stylistic content of impossible scenarios. Networks such as these can be powerful tools for artists and creators as well as the basis for predicting future frames of a video.
+Just six months after the release of DALL-E 2, both Meta and Google released novel Text-to-Video generation models that output impressive video-format content. These networks build off of recent advancements in Text-to-Image modeling using stable diffusion (like DALL-E [[1]](https://arxiv.org/pdf/2102.12092) and Imagen [[2]](https://arxiv.org/pdf/2205.11487)). Meta’s Make-A-Video [[3]](https://arxiv.org/pdf/2209.14792) is capable of five second 768x768 clips at variable frame rates while Google’s Imagen Video [[4]](https://arxiv.org/pdf/2210.02303) can produce 1280×768 videos at 24 fps. Rather than generating video from text directly, both Imagen Video and Make-a-Video leverage the massive text-image pair databases to construct video from Text-to-Image generation models. These Text-to-Video generators are capable of creating high-resolution, photorealistic and stylistic content of impossible scenarios. Networks such as these can be powerful tools for artists and creators as well as the basis for predicting future frames of a video.
 {: style="text-align: justify"}
 
-Video generation has progressed rapidly in the past decade. Early video generation models focused on simple, specific domains and next frame prediction with **deterministic autoregressive** methods [CDNA, PredRNN]. Later video prediction models incorporated stochasticity [SV2P]. Another line of work uses generative models, namely **GANs** to synthesize complex scenes without a first frame [VGAN, TGAN]. More recently, text-to-video has been approached with **VQVAEs** to learn latent representations of video frames and then **autoregressive transformers** to generate video samples [GODIVA & NUWA]. This technique allows for open-domain video generation, but frames are still generated one at a time chronologically, resulting in potentially poor text-video alignment. CogVideo adjusts the training procedure to fix alignment (discussed below) and uses pre-trained text-to-image weights [CogVideo]. Make-A-Video and Imagen Video both use **diffusion models**, which we will discuss in the next section.
+Video generation has progressed rapidly in the past decade. Early video generation models focused on simple, specific domains and next frame prediction with **deterministic autoregressive** methods (CDNA [[5]](https://proceedings.neurips.cc/paper/2016/file/d9d4f495e875a2e075a1a4a6e1b9770f-Paper.pdf), PredRNN [[6]](https://papers.nips.cc/paper/2017/file/e5f6ad6ce374177eef023bf5d0c018b6-Paper.pdf)). Later video prediction models incorporated stochasticity (SV2P [[7]](https://openreview.net/pdf?id=rk49Mg-CW)). Another line of work uses generative models, namely **GANs** to synthesize complex scenes without a first frame (VGAN [[8]](https://arxiv.org/pdf/1611.01799.pdf), TGAN [[9]](https://arxiv.org/pdf/1611.06624)). More recently, text-to-video has been approached with **VQVAEs** to learn latent representations of video frames and then **autoregressive transformers** to generate video samples [GODIVA & NUWA]. This technique allows for open-domain video generation, but frames are still generated one at a time chronologically, resulting in potentially poor text-video alignment. CogVideo adjusts the training procedure to fix alignment (discussed below) and uses pre-trained text-to-image weights [CogVideo]. Make-A-Video and Imagen Video both use **diffusion models**, which we will discuss in the next section.
 {: style="text-align: justify"}
 
 Make-A-Video and Imagen Video have come out just six months after Open-AI’s DALL-E 2. Text to video is a much harder problem than text to image because we don’t have access to as many labeled text-image pairs. Therefore, all the models we highlight take advantage of starting from an existing Text-to-Image model with pre-trained or frozen weights. Moreover, beyond just generating pixels, the network has to predict how they will all evolve over time to coherently complete any actions in the text prompt.
@@ -230,27 +230,40 @@ Several advancements have been achieved with the methods described in this post,
 {: style="font-size: smaller"}
 
 [[2] Saharia, C. et al. Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding, 2022. *arXiv Preprint*.](https://arxiv.org/pdf/2205.11487)
+{: style="font-size: smaller"}
 
 [[3] Singer, U. et al. Make-a-Video: Text-to-Video Generation Without Text-Video Data, 2022. *arXiv Preprint*.](https://arxiv.org/pdf/2209.14792)
+{: style="font-size: smaller"}
 
 [[4] Ho, J. et al. Imagen Video: High Definition Video Generation with Diffusion Models, 2022. *arXiv Preprint*.](https://arxiv.org/pdf/2210.02303)
+{: style="font-size: smaller"}
 
 [[5] Finn, C. et al. Unsupervised Learning for Physical Interaction through Video Prediction, 2016. *30th Conference on Neural Information Processing Systems (NeurIPS)*.](https://proceedings.neurips.cc/paper/2016/file/d9d4f495e875a2e075a1a4a6e1b9770f-Paper.pdf)
+{: style="font-size: smaller"}
 
 [[6] Wang, Y. et al. PredRNN: Recurrent Neural Networks for Predictive Learning using Spatiotemporal LSTMs, 2017. *30th Conference on Neural Information Processing Systems (NeurIPS)*.](https://papers.nips.cc/paper/2017/file/e5f6ad6ce374177eef023bf5d0c018b6-Paper.pdf)
+{: style="font-size: smaller"}
 
 [[7] Babaeizadeh, M. et al. Stochastic Variational Video Prediction, 2018. *International Conference on Learning Representations (ICLR)*.](https://openreview.net/pdf?id=rk49Mg-CW)
+{: style="font-size: smaller"}
 
 [[8] Zhai, S. et al. Generative Adversarial Networks as Variational Training of Energy Based Models, 2017. *arXiv Preprint*.](https://arxiv.org/pdf/1611.01799.pdf)
+{: style="font-size: smaller"}
 
 [[9] Saito, M. et al. Temporal Generative Adversarial Nets with Singular Value Clipping, 2016. *arXiv Preprint*.](https://arxiv.org/pdf/1611.06624)
+{: style="font-size: smaller"}
 
 [[10] Wu, C. et al. GODIVA: Generating Open-DomaIn Videos from nAtural Descriptions, 2021. *arXiv Preprint*.](https://arxiv.org/pdf/2104.14806)
+{: style="font-size: smaller"}
 
 [[11] Wu, C. et al. NÜWA: Visual Synthesis Pre-training for Neural visUal World creAtion, 2021. *arXiv Preprint*.](https://arxiv.org/pdf/2111.12417)
+{: style="font-size: smaller"}
 
 [[12] Hong, W. et al. CogVideo: Large-scale Pretraining for Text-to-Video Generation via Transformers, 2022. *arXiv Preprint*.](https://arxiv.org/pdf/2205.15868)
+{: style="font-size: smaller"}
 
 [[13] Kingma, D. P. et al. Variational Diffusion Models, 2021. *35th Conference on Neural Information Processing Systems (NeurIPS)*.](https://openreview.net/pdf?id=2LdBqxc1Yv)
+{: style="font-size: smaller"}
 
 [[14] Ding, M. et al. CogView: Mastering Text-to-Image Generation via Transformers, 2021. *35th Conference on Neural Information Processing Systems (NeurIPS)*.](https://proceedings.neurips.cc/paper/2021/file/a4d92e2cd541fca87e4620aba658316d-Paper.pdf)
+{: style="font-size: smaller"}
