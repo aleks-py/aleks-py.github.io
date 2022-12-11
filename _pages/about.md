@@ -226,7 +226,7 @@ Several advancements have been achieved with the methods described in this post,
 * [Visual Foresight](https://sites.google.com/view/visualforesight?pli=1) predicts how an object will move given an action in pixel space for more practical robotics planning and control applications.
 
 #### **References**
-[1] EE
+[[1] Ramesh, A. et al. Zero-Shot Text-to-Image Generation, 2021. *arXiv Preprint*.](https://arxiv.org/abs/2102.12092)
 
 [2] AA
 
