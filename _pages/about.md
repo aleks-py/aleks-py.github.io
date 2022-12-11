@@ -99,7 +99,7 @@ The U-Net architecture (which we use as a noise detector) is an **autoencoder**.
 </figure>
 &nbsp;
 
-However, the poor feature representation in the initial layers result in redundant information. To deal with this, we can add attention layers at the skip connections to suppress activation in irrelevant regions, reducing the number of redundant features brought across. For Text-to-Image generation, these attention networks also have access to the text embeddings to help condition the attention.
+However, the poor feature representation in the initial layers result in redundant information. To deal with this, we can add **attention layers** at the skip connections to suppress activation in irrelevant regions, reducing the number of redundant features brought across by focusing "attention" only on the most important image features. For Text-to-Image generation, these attention networks also have access to the text embeddings to help condition the attention.
 {: style="text-align: justify"}
 
 &nbsp;  
