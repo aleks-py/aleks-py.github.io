@@ -107,7 +107,7 @@ However, the poor feature representation in the initial layers result in redunda
 Try it out yourself! Click on different points in the first image and see how this would change the weights in the attention layer. The attention highlights similar features to the clicked region. For text-to-image and text-to-video generation, we include text embeddings to condition attention:
 </callout>
 <figure>
-  <iframe height="400px" width="600px" scrolling="No" frameborder="0" hspace="0" vspace="-40" src="https://attn-gui.onrender.com/"></iframe>
+  <iframe height="400px" width="600px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://attn-gui.onrender.com/"></iframe>
 </figure>
 
 In the next section we discuss the use of attention in the spatial and temporal dimensions to move from image *(2D spatial)* representations to video *(3D)* representations = image *(2D spatial)* + time *(1D temporal)*.
@@ -134,7 +134,7 @@ Separating the spatial and temporal operations allows for **building off of exis
 - Imagen Video can jointly train their model with video or image data, doing the later by masking the temporal connections
 {: style="text-align: justify"}
 
-## **Spatial and Temporal Super Resolution**
+##### **Spatial and Temporal Super Resolution**
 The base video decoder creates a fixed number of frames (5 frame for CogVideo, 16 frames for Make-A-Video, and 15 frames for Imagen Video) that need to be upsampled temporally and spatially.
 {: style="text-align: justify"}
 
