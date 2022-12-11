@@ -117,20 +117,15 @@ Make-A-Video’s initially interpolates frames and then increases the spatial re
 {: style="text-align: justify"}
 
 
-  <!-- <div> -->
-<video autoplay muted loop src="assets/img/frey_orig.mp4"
-    style="width:200px"
-    type="video/mp4">
-</video>
-<video autoplay muted loop src="assets/img/frey_16x.mp4"
-    style="width:200px"
-    type="video/mp4">
-</video>
-<video autoplay muted loop src="assets/img/artifacts.mp4"
-    style="width:200px"
-    type="video/mp4">
-</video>
-&nbsp;  
+<figure>
+  <video autoplay muted loop src="assets/img/artifacts_stack.mp4"
+      style="width:600px"
+      type="video/mp4">
+  </video>
+  <figcaption>Figure 4. Stable diffusion.</figcaption>
+</figure>
+&nbsp;
+
 
 ## **Conclusions**
 As beautiful as many of these videos are . . .
