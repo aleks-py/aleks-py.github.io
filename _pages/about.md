@@ -23,7 +23,7 @@ Make-A-Video and Imagen Video have come out just six months after Open-AI’s DA
 {: style="text-align: justify"}
 
 <figure>
-  <img src="assets/img/timeline.png" width="670" />
+  <img src="assets/img/timeline1.png" width="670" />
   <figcaption>Figure 1. Timeline of video generation and prediction techniques. The modern-day Text-to-Video generators each leverage the capabilities of massively pre-trained Text-to-Image networks, such as Imagen and DALL-E 2.</figcaption>
 </figure>
 &nbsp;  
@@ -32,7 +32,7 @@ In this post, we’ll break down the building blocks to make text-to-video gener
 {: style="text-align: justify"}
 
 <figure>
-  <img src="assets/img/T2V.png" width="600" />
+  <img src="assets/img/T2V1.png" width="600" />
   <figcaption>Figure 2. Network diagram for a general Text-to-Video workflow.
   Text-to-Image encodings are trained to be decoded into image "batches", e.g.,
   videos, that get upsampled spatially and temporally.</figcaption>
@@ -51,7 +51,7 @@ First let’s explain how **auto-encoders** work:
 {: style="text-align: justify"}
 
 <figure>
-  <img src="assets/img/autoencoder.png" width="500" />
+  <img src="assets/img/autoencoder1.png" width="500" />
   <figcaption>Figure 3. Demonstration of an autoencoder network. Images get compressed into lower-dimensional embeddings that are later decoded and "reconstructed". Training this autoencoder network sets the weights for the encoder and decoder such that when new
   images, unseen by the network during training are passed through, brand new images
   are generated.</figcaption>
@@ -72,7 +72,7 @@ During the forward process, we create a dataset by incrementally adding more noi
 {: style="text-align: justify"}
 
 <figure>
-  <img src="assets/img/stable_diff_latent_space.png" width="770" />
+  <img src="assets/img/latents1.png" width="770" />
   <figcaption>Figure 4. Stable diffusion.</figcaption>
 </figure>
 &nbsp;  
