@@ -190,7 +190,8 @@ As beautiful as many of these videos are . . .
 {: style="text-align: justify"}
 
 <figure>
-  <img src="https://imagen.research.google/video/hdvideos/51.mp4" width="670" />
+  <video autoplay muted loop src="https://imagen.research.google/video/hdvideos/51.mp4" width="670" type="video/mp4">
+  </video>
 </figure>
 
 Not all of them are perfect:
