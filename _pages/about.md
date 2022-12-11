@@ -73,7 +73,7 @@ During the forward process, we create a dataset by incrementally adding more noi
 
 <figure>
   <img src="assets/img/latents1.png" width="770" />
-  <figcaption>Figure 4. Stable diffusion.</figcaption>
+  <figcaption>Figure 4. Forward and reverse processes in stable diffusion. In the forward process, random noise is progressively added to the latents in order to create a training set. In the reverse process, the noisy latents are iteratively passed through a U-Net model that learns to denoise the latents. Thus, we can pass random noise into this model and generate a new relevant video with the model’s attention layers conditioned to the input.</figcaption>
 </figure>
 &nbsp;  
 
@@ -83,7 +83,7 @@ The U-Net architecture (which we use as a noise detector) is an auto-encoder. Do
 
 <figure>
   <img src="assets/img/unet1.png" width="770" />
-  <figcaption>Figure 5. U-Net.</figcaption>
+  <figcaption>Figure 5. U-Net Architecture. U-Net consists of a convolutional encoder and decoder. Skip connections copy and crop information from downsampling. Attention layers at skip connections help by weighting relevant information. Referenced from [U-Net].</figcaption>
 </figure>
 &nbsp;
 
@@ -102,7 +102,7 @@ Make-A-Video creates pseudo 3D convolution and attention layers by stacking a 1D
 
 <figure>
   <img src="assets/img/attention1.png" width="770" />
-  <figcaption>Figure 6. Video.</figcaption>
+  <figcaption>Figure 6. 3D U-Net components  stacking 1D temporal layers over 2D spatial layers. Make-A-Video has individual pseudo 3D convolutional and attention layers. Imagen video first does spatial processing on each individual frame and then has a  temporal attention across frames. The spatial layers can all be pre-trained from Text-to-Image models.</figcaption>
 </figure>
 &nbsp;
 
@@ -118,7 +118,7 @@ The base video decoder creates a fixed number of frames (5 for CogVideo, 16 for 
 
 <figure>
   <img src="assets/img/super_resolution1.png" width="670" />
-  <figcaption>Figure 7. SRR.</figcaption>
+  <figcaption>Figure 7. Text-to-Video architectures of Imagen Video and Make-A-Video. Light blue boxes represent temporal upsampling steps and darker blue boxes are for spatial upsampling.</figcaption>
 </figure>
 &nbsp;
 
@@ -127,6 +127,12 @@ Make-A-Video uses **frame rate conditioning**, meaning they have an additional i
 
 **Frame interpolation** for Make-A-Video is done in an autoregressive manner. They fine-tune a spatio-temporal decoder by masking certain frames of a training video and learning to predict them. They train with variable frame-skips and fps conditioning to enable different temporal upsampling rates. The framework is also able to interpolate and extrapolate (extend the beginning or end of a video).
 {: style="text-align: justify"}
+
+<figure>
+  <img src="assets/img/masking1.png" width="500" />
+  <figcaption>Figure 8.</figcaption>
+</figure>
+&nbsp;
 
 Imagen Video’s approach relies on **cascaded video diffusion models**. They generate entire blocks of frames simultaneously for each network to avoid the artifacts that would result from running super-resolution on independent frames. Each of the 6 super-resolution sub-models after the base video diffusion model focuses on either temporal or spatial upsampling. While the base model (the video decoder at the lowest frame rate/resolution) uses a temporal attention layer to model long-term temporal dependencies, the super-resolution models only use temporal convolution layers for computational efficiency while still maintaining local temporal consistency. Similarly, spatial attention is only used in the base and first two spatial super-resolution models, while the rest only use convolution.
 {: style="text-align: justify"}
