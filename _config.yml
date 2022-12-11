@@ -2,7 +2,7 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: blank # the website title (if blank, full name will be used instead)
+title: Text-to-Video Generation # the website title (if blank, full name will be used instead)
 first_name: Imagen
 middle_name: R.
 last_name: Name
