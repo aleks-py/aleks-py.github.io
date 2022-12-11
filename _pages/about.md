@@ -82,6 +82,7 @@ For Text-to-Video generation, the encoding-decoding network is trained using **s
 During the forward process, we create a dataset by incrementally adding more noise to our latent variables. In the reverse process, we train a model with a **U-Net architecture** to iteratively denoise these latents. This way, we can efficiently generate new images by starting with random noise and end up with a latent that can be decoded into a real image (while conditioning layers on the input text embedding).
 {: style="text-align: justify"}
 
+&nbsp;  
 <figure>
   <img src="assets/img/latents1.png" width="770" />
   <figcaption>Figure 4. Forward and reverse processes in stable diffusion. In the forward process, random noise is progressively added to the latents in order to create a training set. In the reverse process, the noisy latents are iteratively passed through a U-Net model that learns to denoise the latents. Thus, we can pass random noise into this model and generate a new relevant video with the model’s attention layers conditioned to the input.</figcaption>
@@ -177,7 +178,7 @@ Bringing all the foundational building blocks together, we can now build the ful
   <img src="assets/img/T2V_building_blocks2.png" width="700" />
   <figcaption>Figure 9.</figcaption>
 </figure>
-&nbsp;
+&nbsp;  
 
 
 ## **Conclusions**
