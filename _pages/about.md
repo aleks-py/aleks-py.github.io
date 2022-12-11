@@ -16,7 +16,7 @@ social: false  # includes social icons at the bottom of the page
 
 &nbsp;  
 <callout>
-Try it out yourself! Click through the text prompts that Google and Meta used to generate new, unseen videos using AI.
+Try it out yourself! Click through the text prompts that Google and Meta used to generate new, unseen videos using AI:
 </callout>
 <figure1>
   <iframe height="600px" width="840px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://video-gui.onrender.com/"></iframe>
@@ -74,6 +74,10 @@ Here an input image is encoded into a lower-dimensional latent space representat
 Sampling within the latent space distribution allows us to generate realistic outputs.
 {: style="text-align: justify"}
 
+&nbsp;  
+<callout>
+Try it out yourself! We’ve trained an autoencoder with a two-dimensional latent space embedding. The two latents happen to correspond to affect and pose (the two variables changed in the dataset). Drag your cursor through latent space to change the values of the latent variable z and see how the reconstructed image from the decoder changes:
+</callout>
 <figure>
   <iframe height="420px" width="720px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://vae-gui.onrender.com/"></iframe>
 </figure>
