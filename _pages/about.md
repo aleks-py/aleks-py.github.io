@@ -14,6 +14,10 @@ social: false  # includes social icons at the bottom of the page
 
 ### Google's Imagen Video and Meta's Make-a-Video Explained
 
+<callout>
+Try out clicking through the various Text-to-Video Generation examples by Google and Meta below.
+</callout>
+
 <figure1>
   <iframe height="600px" width="840px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://video-gui.onrender.com/"></iframe>
 </figure1>
