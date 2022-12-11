@@ -41,19 +41,15 @@ Make-A-Video and Imagen Video have come out just six months after Open-AI’s DA
 </figure>
 &nbsp;  
 
-In this post, we’ll break down the building blocks to make text-to-video generation possible, starting from a brief overview of how text to image generators use stable diffusion, how to make the components 3D to incorporate temporal information for video generation, and how to increase the spatial and temporal resolution.
+We’ll break down the building blocks to make text-to-video generation possible, starting from a brief overview of how text to image generators use stable diffusion, how to make the components 3D to incorporate temporal information for video generation, and how to increase the spatial and temporal resolution. We focus on how these components make up Make-A-Video and Imagen Video, but also touch on CogVideo (an open-source text to image video generator that uses a VQVAE + autoregressive transformers architecture).
 {: style="text-align: justify"}
 
 <figure>
   <img src="assets/img/T2V1.png" width="600" />
-  <figcaption>Figure 2. Network diagram for a general Text-to-Video workflow.
-  Text-to-Image encodings are trained to be decoded into image "batches", e.g.,
-  videos, that get upsampled spatially and temporally.</figcaption>
+  <figcaption>Figure 2. The foundational network diagram for Text-to-Video generation that leverages Text-to-Image encodings. These encodings are trained to be decoded into image "batches", e.g., videos, that get upsampled spatially and temporally to have higher framerates and higher resolution.</figcaption>
 </figure>
 &nbsp;  
 
-We’ll focus on how these components make up Make-A-Video and Imagen Video, but also touch on CogVideo (an open-source text to image video generator that uses a VQVAE + autoregressive transformers architecture).
-{: style="text-align: justify"}
 
 ## **Text-to-Image Generation**
 Text to Image uses stable diffusion in latent space and a 2D U-Net architecture for image generation (see link for more details).
