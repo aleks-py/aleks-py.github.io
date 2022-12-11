@@ -39,3 +39,20 @@ We train our network using **stable diffusion**.
 
 ##### **How does stable diffusion work in latent space?**
 During the forward process, we create a dataset by incrementally adding more noise to our latent variables. In the reverse process, we train a model with a **U-Net architecture** to iteratively denoise these latents. This way, we can efficiently generate new images by starting with random noise and end up with a latent that can be decoded into a real image (while conditioning layers on the input text embedding).
+
+The U-Net architecture (which we use as a noise detector) is an auto-encoder. Downsampling and upsampling is done with convolutional layers. However, because the latent space is lower-dimensional, it’s possible to lose information, meaning that spatial recreation can be imprecise during upsampling. To deal with this, U-Net has **skip connections** that provide access to spatial information during downsampling.
+
+However, the poor feature representation in the initial layers result in redundant information. To deal with this, we can add attention layers at the skip connections to suppress activation in irrelevant regions, reducing the number of redundant features brought across. For text-to-image generation, these attention networks also have access to the text embeddings to help condition the attention.
+
+## **Text to Video Generation**
+
+##### **How do we extend text to image to text to video?**
+
+Text to image generation uses U-Net architecture with 2D spatial convolution and attention layers. For video generation, we need to add a third temporal dimension to the two spatial ones. 3D convolution layers are computationally expensive and 3D attention layers are computationally intractable. Therefore, these papers have their own approaches.
+
+Make-A-Video creates pseudo 3D convolution and attention layers by stacking a 1D temporal layer over a 2D spatial layer. Imagen Video does spatial convolution and attention for each individual frame, then does temporal attention or convolution across all frames.
+
+Separating the spatial and temporal operations allows for **building off of existing text-to-image models.**
+- CogVideo freezes all the weights of the spatial layers
+- Make-A-Video uses pretrained weights for the spatial layers but initializes the temporal layer weights to the identity matrix. This way they can continue tuning all weights with new video data
+- Imagen Video can jointly train their model with video or image data, doing the later by masking the temporal connections
