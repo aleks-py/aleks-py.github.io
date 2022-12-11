@@ -152,7 +152,7 @@ Make-A-Video uses **frame rate conditioning**, meaning they have an additional i
 
 <figure>
   <img src="assets/img/masking2.png" width="500" />
-  <figcaption>Figure 8.</figcaption>
+  <figcaption>Figure 8. Frame masking for frame interpolation (middle) and extrapolation (bottom). For interpolation, variable frames are skipped. For extrapolation, frames at the beginning or end of the video can be masked.</figcaption>
 </figure>
 &nbsp;
 
