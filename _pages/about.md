@@ -76,7 +76,7 @@ Sampling within the latent space distribution allows us to generate realistic ou
 
 &nbsp;  
 <callout>
-Try it out yourself! We’ve trained an autoencoder with a two-dimensional latent space embedding. The two latents happen to correspond to affect and pose (the two variables changed in the dataset). Drag your cursor through latent space to change the values of the latent variable z and see how the reconstructed image from the decoder changes:
+Try it out yourself! We’ve trained an autoencoder with a two-dimensional latent space embedding. The two latents happen to correspond to expression and pose (the two variables changed in the dataset). Drag your cursor through latent space to change the values of the latent variable, Z, and see how the reconstructed image from the decoder changes:
 </callout>
 <figure>
   <iframe height="420px" width="720px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://vae-gui.onrender.com/"></iframe>
@@ -108,6 +108,10 @@ The U-Net architecture (which we use as a noise detector) is an auto-encoder. Do
 However, the poor feature representation in the initial layers result in redundant information. To deal with this, we can add attention layers at the skip connections to suppress activation in irrelevant regions, reducing the number of redundant features brought across. For Text-to-Image generation, these attention networks also have access to the text embeddings to help condition the attention.
 {: style="text-align: justify"}
 
+&nbsp;  
+<callout>
+Try it out yourself! Click on different points in the first image and see how this would change the weights in the attention layer. The attention highlights similar features to the clicked region. For text-to-image and text-to-video generation, we include text embeddings to condition attention. In the next section we discuss the use of attention in the spatial and temporal attention dimensions:
+</callout>
 <figure>
   <iframe height="400px" width="600px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://attn-gui.onrender.com/"></iframe>
 </figure>
