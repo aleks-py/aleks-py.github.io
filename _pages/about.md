@@ -75,7 +75,7 @@ Try it out yourself! We’ve trained an autoencoder with a two-dimensional laten
   <iframe height="420px" width="720px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://vae-gui.onrender.com/"></iframe>
 </figure>
 
-We train our network using **stable diffusion**.
+For Text-to-Video generation, the encoding-decoding network is trained using **stable diffusion**.
 {: style="text-align: justify"}
 
 ##### **How does stable diffusion work in latent space?**
@@ -174,7 +174,7 @@ Make-A-Video’s initially interpolates frames and then increases the spatial re
 Bringing all the foundational building blocks together, we can now build the full Text-to-Video assembly.
 
 <figure>
-  <img src="assets/img/T2V_building_blocks1.png" width="700" />
+  <img src="assets/img/T2V_building_blocks2.png" width="700" />
   <figcaption>Figure 9.</figcaption>
 </figure>
 &nbsp;
