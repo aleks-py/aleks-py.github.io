@@ -22,12 +22,12 @@ Video generation has progressed rapidly in the past decade. Early video generati
 Make-A-Video and Imagen Video have come out just six months after Open-AI’s DALL-E 2. Text to video is a much harder problem than text to image because we don’t have access to as many labeled text-image pairs. Therefore, all the models we highlight take advantage of starting from an existing Text-to-Image model with pre-trained or frozen weights. Moreover, beyond just generating pixels, the network has to predict how they will all evolve over time to coherently complete any actions in the text prompt.
 {: style="text-align: justify"}
 
-![timeline](assests/img/timeline.png)
+![timeline](assets/img/timeline.png)
 
 In this post, we’ll break down the building blocks to make text-to-video generation possible, starting from a brief overview of how text to image generators use stable diffusion, how to make the components 3D to incorporate temporal information for video generation, and how to increase the spatial and temporal resolution.
 {: style="text-align: justify"}
 
-![T2V](assests/img/T2V.png)
+![T2V](assets/img/T2V.png)
 
 We’ll focus on how these components make up Make-A-Video and Imagen Video, but also touch on CogVideo (an open-source text to image video generator that uses a VQVAE + autoregressive transformers architecture).
 {: style="text-align: justify"}
@@ -40,7 +40,7 @@ Text to Image uses stable diffusion in latent space and a 2D U-Net architecture 
 First let’s explain how **auto-encoders** work:
 {: style="text-align: justify"}
 
-![autoencoder](assests/img/autoencoder.png)
+![autoencoder](assets/img/autoencoder.png)
 
 Here an input image is encoded into a lower-dimensional latent space representation and a decoder can reconstruct the image. This network is trained by comparing the input to the reconstructed output.
 {: style="text-align: justify"}
