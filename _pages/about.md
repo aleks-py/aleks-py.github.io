@@ -184,7 +184,7 @@ In this post, we have described the foundational building blocks of Text-to-Vide
 </figure>
 &nbsp;  
 
-##### **The foundational building blocks of *Figure 9* are summarized and tied back to their utility in Text-to-Video generation:**
+The foundational building blocks of *Figure 9* are summarized and tied back to their utility in Text-to-Video generation:
 1. **Latent Decoder:** An autoencoder encoding-decoding network demonstrates how data can be compressed into a low-dimensional latent representation and then by selecting different points in this latent space, new outputs are generated.
 2. **Latent Diffusion:** Training an encoding-decoding network with the stable diffusion process allows completely new images to be generated from latents with added noise. In a Text-to-Video model, image "batches" are generated from a single noisy latent put through the trained decoder to create a new, unseen videos at low FPS and low resolution.
 3. **2D U-Net:** To retain import information during the latent space compression encoding-decoding process, skip connections are added to tether the encoder with the decoder. This is a data-efficient architecture called a U-Net that is used in the encoding-decoding process of Text-to-Image.
