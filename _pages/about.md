@@ -22,17 +22,17 @@ Google and Meta have both developed advanced AI networks that can generate new, 
   <iframe height="600px" width="840px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://video-gui.onrender.com/"></iframe>
 </figure1>
 
-In this post, we dissect and explain the mechanics behind the key building blocks for state-of-the-art Text-to-Video generation. We provide interactive examples of these building blocks and demonstrate the key novelties/differences between two Text-to-Video models: Imagen Video and Make-a-Video. Finally, we summarize by building up the complete framework of a Text-to-Video model from the building blocks as well as noting the current failure modes and limitations of the models today.
+In this post, we dissect and explain the mechanics behind the key building blocks for state-of-the-art Text-to-Video generation. We provide interactive examples of these building blocks and demonstrate the key novelties/differences between two Text-to-Video models: Imagen Video and Make-a-Video. Finally, we summarize by showing how the building blocks fit together into a complete Text-to-Video framework as well as noting the current failure modes and limitations of the models today.
 {: style="text-align: justify"}
 
 ## **History of Text-to-Video**
-Just six months after the release of DALL-E 2, both Meta and Google released novel Text-to-Video generation models that output impressive video-format content. These networks build off of recent advancements in Text-to-Image modeling using stable diffusion (like DALL-E [[1]](https://arxiv.org/pdf/2102.12092) and Imagen [[2]](https://arxiv.org/pdf/2205.11487)). Meta’s Make-A-Video [[3]](https://arxiv.org/pdf/2209.14792) is capable of five second 768x768 clips at variable frame rates while Google’s Imagen Video [[4]](https://arxiv.org/pdf/2210.02303) can produce 1280×768 videos at 24 fps. Rather than generating video from text directly, both Imagen Video and Make-a-Video leverage the massive text-image pair databases to construct video from Text-to-Image generation models. These Text-to-Video generators are capable of creating high-resolution, photorealistic and stylistic content of impossible scenarios. Networks such as these can be powerful tools for artists and creators as well as the basis for predicting future frames of a video.
+Just six months after the release of DALL-E 2, both Meta and Google released novel Text-to-Video generation models that output impressive video-format content. These networks build off of recent advancements in Text-to-Image modeling using stable diffusion (like DALL-E [[1]](https://arxiv.org/pdf/2102.12092) and Imagen [[2]](https://arxiv.org/pdf/2205.11487)). Meta’s Make-A-Video [[3]](https://arxiv.org/pdf/2209.14792) is capable of five second 768x768 clips at variable frame rates while Google’s Imagen Video [[4]](https://arxiv.org/pdf/2210.02303) can produce 1280×768 videos at 24 fps. Rather than training strictly on text-video pair datasets, both Imagen Video and Make-a-Video leverage the massive text-image pair databases to construct video from pretrained Text-to-Image generation models. These Text-to-Video generators are capable of creating high-resolution, photorealistic and stylistic content of impossible scenarios. Networks such as these can be powerful tools for artists and creators as well as the basis for predicting future frames of a video.
 {: style="text-align: justify"}
 
-Video generation has progressed rapidly in the past decade. Early video generation models focused on simple, specific domains and next frame prediction with **deterministic autoregressive** methods (CDNA [[5]](https://proceedings.neurips.cc/paper/2016/file/d9d4f495e875a2e075a1a4a6e1b9770f-Paper.pdf), PredRNN [[6]](https://papers.nips.cc/paper/2017/file/e5f6ad6ce374177eef023bf5d0c018b6-Paper.pdf)). Later video prediction models incorporated stochasticity (SV2P [[7]](https://openreview.net/pdf?id=rk49Mg-CW)). Another line of work uses generative models, namely **GANs** to synthesize complex scenes without a first frame (VGAN [[8]](https://arxiv.org/pdf/1611.01799.pdf), TGAN [[9]](https://arxiv.org/pdf/1611.06624)). More recently, text-to-video has been approached with **VQVAEs** to learn latent representations of video frames and then **autoregressive transformers** to generate video samples (GODIVA [[10]](https://arxiv.org/pdf/2104.14806), NUWA [[11]](https://arxiv.org/pdf/2111.12417)). This technique allows for open-domain video generation, but frames are still generated one at a time chronologically, resulting in potentially poor text-video alignment. CogVideo [[12]](https://arxiv.org/pdf/2205.15868) adjusts the training procedure to fix alignment (discussed below) and uses pre-trained text-to-image weights. Make-A-Video and Imagen Video both use **diffusion models** (VDM [[13]](https://openreview.net/pdf?id=2LdBqxc1Yv)), which we will discuss in the next section.
+Video generation has progressed rapidly in the past decade. Early video generation models focused on simple, specific domains and next frame prediction with **deterministic autoregressive** methods (CDNA [[5]](https://proceedings.neurips.cc/paper/2016/file/d9d4f495e875a2e075a1a4a6e1b9770f-Paper.pdf), PredRNN [[6]](https://papers.nips.cc/paper/2017/file/e5f6ad6ce374177eef023bf5d0c018b6-Paper.pdf)). Later video prediction models incorporated stochasticity (SV2P [[7]](https://openreview.net/pdf?id=rk49Mg-CW)). Another line of work uses generative models, namely **GANs**, to synthesize complex scenes without a first frame (VGAN [[8]](https://arxiv.org/pdf/1611.01799.pdf), TGAN [[9]](https://arxiv.org/pdf/1611.06624)). More recently, text-to-video has been approached with **VQVAEs** to learn latent representations of video frames and then **autoregressive transformers** to generate video samples (GODIVA [[10]](https://arxiv.org/pdf/2104.14806), NUWA [[11]](https://arxiv.org/pdf/2111.12417)). This technique allows for open-domain video generation, but frames are still generated one at a time chronologically, resulting in potentially poor text-video alignment. CogVideo [[12]](https://arxiv.org/pdf/2205.15868) adjusts the training procedure to fix alignment (discussed below) and uses pre-trained text-to-image weights. Make-A-Video and Imagen Video both use **diffusion models** (VDM [[13]](https://openreview.net/pdf?id=2LdBqxc1Yv)), which we will discuss in the next section.
 {: style="text-align: justify"}
 
-Make-A-Video and Imagen Video have come out just six months after Open-AI’s DALL-E 2. Text to video is a much harder problem than text to image because we don’t have access to as many labeled text-image pairs. Therefore, all the models we highlight take advantage of starting from an existing Text-to-Image model with pre-trained or frozen weights. Moreover, beyond just generating pixels, the network has to predict how they will all evolve over time to coherently complete any actions in the text prompt.
+Make-A-Video and Imagen Video have come out just six months after Open-AI’s DALL-E 2. Text-to-Video is a much harder problem than Text-to-Image because we don’t have access to as many labeled text-video pairs. Therefore, all the models we highlight take advantage of starting from an existing Text-to-Image model with pre-trained or frozen weights. Moreover, beyond just generating pixels, the network has to predict how they will all evolve over time to coherently complete any actions in the text prompt.
 {: style="text-align: justify"}
 
 <figure>
@@ -41,12 +41,12 @@ Make-A-Video and Imagen Video have come out just six months after Open-AI’s DA
 </figure>
 &nbsp;  
 
-We’ll break down the building blocks to make text-to-video generation possible, starting from a brief overview of how text to image generators use stable diffusion, how to make the components 3D to incorporate temporal information for video generation, and how to increase the spatial and temporal resolution. We focus on how these components make up Make-A-Video and Imagen Video, but also touch on CogVideo (an open-source text to image video generator that uses a VQVAE + autoregressive transformers architecture).
+We’ll break down the building blocks to make Text-to-Video generation possible, starting from a brief overview of how text to image generators use stable diffusion, how to make the components 3D to incorporate temporal information for video generation, and how to increase the spatial and temporal resolution. We focus on how these components make up Make-A-Video and Imagen Video, but also touch on CogVideo (an open-source text to image video generator that uses a VQVAE + autoregressive transformers architecture).
 {: style="text-align: justify"}
 
 <figure>
   <img src="assets/img/T2V1.png" width="600" />
-  <figcaption>Figure 2. A simplified foundational network diagram for Text-to-Video generation that leverages Text-to-Image encodings. These encodings are trained to be decoded into image "batches", e.g., videos, that get upsampled spatially and temporally to have higher framerates and higher resolution. Scroll to Figure 9 to see the building blocks in more detail and how they fit together.</figcaption>
+  <figcaption>Figure 2. A simplified foundational network diagram for Text-to-Video generation that leverages pretrained Text-to-Image encodings. These encodings are trained to be decoded into image "batches", e.g., videos, that get upsampled spatially and temporally to have higher framerates and higher resolution. Scroll to Figure 9 to see the building blocks in more detail and how they fit together.</figcaption>
 </figure>
 &nbsp;  
 
@@ -58,7 +58,7 @@ Text-to-Image generation uses stable diffusion in latent space and a 2D U-Net ar
 
 <figure>
   <img src="assets/img/autoencoder1.png" width="500" />
-  <figcaption>Figure 3. Demonstration of an autoencoder network. Images get compressed into lower-dimensional embeddings that are later decoded and "reconstructed". Training this autoencoder network learns weights for the decoder, such that when randomly sampled embeddings from Z are passed through the decoder, D, brand new images unseen by the network before are generated.</figcaption>
+  <figcaption>Figure 3. Demonstration of an autoencoder network. Images get compressed into lower-dimensional embeddings that are later decoded and "reconstructed." Training this autoencoder network learns weights for the decoder, such that when randomly sampled embeddings from Z are passed through the decoder, D, brand new images unseen by the network are generated.</figcaption>
 </figure>
 &nbsp;
 
@@ -94,8 +94,8 @@ The U-Net architecture (which we use as a noise detector) is an **autoencoder**.
 {: style="text-align: justify"}
 
 <figure>
-  <img src="assets/img/unet1.png" width="770" />
-  <figcaption>Figure 5. U-Net architecture consists of a convolutional encoder and decoder. Skip connections copy and crop information from downsampling. Attention layers at skip connections help by weighting relevant information. Referenced from [U-Net].</figcaption>
+  <img src="assets/img/unet2.png" width="770" />
+  <figcaption>Figure 5. U-Net architecture consists of a convolutional encoder and decoder. Skip connections copy and crop information from downsampling. Attention layers at skip connections help by weighting relevant information. Referenced from U-Net [15].</figcaption>
 </figure>
 &nbsp;
 
@@ -110,13 +110,13 @@ Try it out yourself! Click on different points in the first image and see how th
   <iframe height="400px" width="600px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://attn-gui.onrender.com/"></iframe>
 </figure>
 
-In the next section we discuss the use of attention in the spatial and temporal dimensions to move from image *(2D spatial)* representations to video *(3D)* representations = image *(2D spatial)* + time *(1D temporal)*.
+In the next section we discuss how to modify our convolutional and attention layers to move from image *(2D spatial)* representations to video *(3D)* representations, composed of individual frames *(2D spatial)* + time *(1D temporal)*.
 
 ## **Text-to-Video Generation**
 
 ##### **How do we extend Text-to-Image to Text-to-Video?**
 
-Text to image generation uses U-Net architecture with 2D spatial convolution and attention layers. For video generation, we need to add a third temporal dimension to the two spatial ones. 3D convolution layers are computationally expensive and 3D attention layers are computationally intractable. Therefore, these papers have their own approaches.
+Text-to-Image generation uses U-Net architecture with 2D spatial convolution and attention layers. For video generation, we need to add a third temporal dimension to the two spatial ones. 3D convolution layers are computationally expensive and 3D attention layers are computationally intractable. Therefore, these papers have their own approaches.
 {: style="text-align: justify"}
 
 Make-A-Video creates pseudo 3D convolution and attention layers by stacking a 1D temporal layer over a 2D spatial layer. Imagen Video does spatial convolution and attention for each individual frame, then does temporal attention or convolution across all frames.
@@ -124,18 +124,18 @@ Make-A-Video creates pseudo 3D convolution and attention layers by stacking a 1D
 
 <figure>
   <img src="assets/img/attention1.png" width="770" />
-  <figcaption>Figure 6. 3D U-Net components  stacking 1D temporal layers over 2D spatial layers. Make-A-Video has individual pseudo 3D convolutional and attention layers. Imagen video first does spatial processing on each individual frame and then has a  temporal attention across frames. The spatial layers can all be pre-trained from Text-to-Image models.</figcaption>
+  <figcaption>Figure 6. 3D U-Net components  stacking 1D temporal layers over 2D spatial layers. Make-A-Video has individual pseudo 3D convolutional and attention layers. Imagen video first does spatial processing on each individual frame and then has a  temporal attention layer across frames. The spatial layers can all be pre-trained from Text-to-Image models.</figcaption>
 </figure>
 &nbsp;
 
-Separating the spatial and temporal operations allows for **building off of existing text-to-image models.**
-- CogVideo freezes all the weights of the spatial layers
-- Make-A-Video uses pretrained weights for the spatial layers but initializes the temporal layer weights to the identity matrix. This way they can continue tuning all weights with new video data
-- Imagen Video can jointly train their model with video or image data, doing the later by masking the temporal connections
+Separating the spatial and temporal operations allows for **building off of existing Text-to-Image models.**
+- **CogVideo** freezes all the weights of the spatial layers
+- **Make-A-Video** uses pretrained weights for the spatial layers but initializes the temporal layer weights to the identity matrix. This way they can continue tuning all weights with new video data
+- **Imagen Video** can jointly train their model with video and image data, doing the latter by masking the temporal connections
 {: style="text-align: justify"}
 
 ##### **Spatial and Temporal Super Resolution**
-The base video decoder creates a fixed number of frames (5 frame for CogVideo, 16 frames for Make-A-Video, and 15 frames for Imagen Video) that need to be upsampled temporally and spatially.
+The base video decoder creates a fixed number of frames (5 frames for CogVideo, 16 frames for Make-A-Video, and 15 frames for Imagen Video) that need to be upsampled temporally and spatially.
 {: style="text-align: justify"}
 
 <figure>
@@ -163,14 +163,14 @@ Make-A-Video’s approach initially interpolates frames and then increases the s
 {: style="text-align: justify"}
 
 <callout>
-Here we show a low-resolution video upsampled using bilinear interpolation (left) and the same video upsampled using a nsuper-resolution eural networks applied to each individual frame (middle). We see flickering artifacts because upsampling was performed separately per frame, rather than hallucinating detail across frames. The difference map (right) highlights the differences between the left and middle videos to demonstrate the flickering effect that occurs in a video when upsampled without proper detail hallucination to maintain temporal coherency. The video generation models we discuss actively consider temporal coherency while hallucinating details during upsampling to avoid these artifacts
+Here we show a low-resolution video upsampled using bilinear interpolation (left) and the same video upsampled using a super-resolution neural networks applied to each individual frame (middle). We see flickering artifacts because upsampling was performed separately per frame, rather than hallucinating detail across frames. The difference map (right) highlights the differences between the left and middle videos to demonstrate the flickering effect that occurs in a video when upsampled without proper detail hallucination to maintain temporal coherency. The video generation models we discuss actively consider temporal coherency while hallucinating details during upsampling to avoid these artifacts
 </callout>
 <figure>
   <video autoplay muted loop src="assets/img/artifacts_stack1.mp4"
       style="width:500px"
       type="video/mp4">
   </video>
-  <figcaption>(left) Video frames upsampled using bilinear interpolation. (middle) Video frames upsampled using a super-resolution neural network. (right) Difference map between each frame of the left and middle videos.</figcaption>
+  <figcaption>(left) Video frames upsampled using bilinear interpolation. (middle) Video frames upsampled using a super-resolution neural network. (right) Difference map between each frame of the left and middle videos, showing flickering artifacts.</figcaption>
 </figure>
 &nbsp;
 
@@ -186,11 +186,11 @@ In this post, we have described the foundational building blocks of Text-to-Vide
 
 The foundational building blocks of *Figure 9* and their utility in Text-to-Video generation are summarized:
 1. **Latent Decoder:** An autoencoder encoding-decoding network demonstrates how data can be compressed into a low-dimensional latent representation and then by selecting different points in this latent space, new outputs are generated.
-2. **Latent Diffusion:** Training an encoding-decoding network with the stable diffusion process allows completely new images to be generated from latents with added noise. In a Text-to-Video model, image "batches" are generated from a single noisy latent put through the trained decoder to create a new, unseen videos at low FPS and low resolution.
+2. **Latent Diffusion:** Training an encoding-decoding network with the stable diffusion process allows completely new images to be generated from latents with added noise. In a Text-to-Video model, image "batches" are generated from a single noisy latent put through the trained decoder to create a new, unseen video at low FPS and low resolution.
 3. **2D U-Net:** To retain import information during the latent space compression encoding-decoding process, skip connections are added to tether the encoder with the decoder. This is a data-efficient architecture called a U-Net that is used in the encoding-decoding process of Text-to-Image.
-4. **3D U-Net:** The 3D U-Net is an extension of the Text-to-Image 2D U-Net for Text-to-Video generation. Since it is computationally expensive to expand 2D convolution and attention into 3D naively, psuedo 3D convolution and attention are constructed by concatenating 2D and 1D spatial and temporal layers, respectively.
-5. **Attention:** To determine which features to pay attention to during spatial and temporal training, attention layers are added. In a Text-to-Video model, attention helps create realistic videos by connecting important features in each frame and across frames using fewer parameters than a standard fully-connected layer would require.
-6. **Super-Resolution:** Upsampling in both the spatial and temporal dimensions increases the video resolution and framerate, respectively. In Text-to-Video, when new, noisy latents are decoded, each latent is instantiated with the same noise to improve detail hallucination and temporal consistency.
+4. **3D U-Net:** The 3D U-Net is an extension of the Text-to-Image 2D U-Net for Text-to-Video generation. Since it is computationally expensive to expand 2D convolution and attention directly into 3D, hence, psuedo 3D convolution and attention are constructed by concatenating 2D spatial and 1D temporal layers.
+5. **Attention:** Attention layers help determine which spatial and temporal features to pay attention to, according to the input text conditioning. In a Text-to-Video model, attention helps create realistic videos by connecting important features in each frame and across frames with less required information transfer than a standard fully-connected layer.
+6. **Super-Resolution:** Upsampling in both the spatial and temporal dimensions increases the video resolution and frame rate, respectively. In Text-to-Video, upsampling is done across image batches simultaneously or with other considerations to ensure temporal consistency.
 
 By combining these six building blocks together, a **complete Text-to-Video generation model** can be constructed. Google and Meta demonstrate technically unique yet methodically similar approaches for expanding 2D Text-to-Image generation into the 3D realm while significantly improving the resolution, framerate, and temporal coherency of videos generated from text-based prompts.
 
@@ -213,7 +213,7 @@ Not all of them are perfect . . . *(pay close attention to the legs of the eleph
   </video>
 </figure>
 
-Although Imagen Video and Make-a-Video have made significant progress in temporal coherency to remove flickering effects, complex videos generated where image data is sparse, have poor realism across the temporal dimension. In the elephant walking underwater example, a lack of training data of elephants walking results in latent diffusion having to work harder to interpolate the missing frames, resulting in **poor temporal realism**. However, as both datasets and models continue to grow in size, the videos generated by the methods discussed in this post will improve in realism and these failure modes will become less common.
+Although Imagen Video and Make-a-Video have made significant progress in temporal coherency to remove flickering effects, complex videos generated where image data is sparse, have poor realism across the temporal dimension. In the elephant walking underwater example, a lack of training data of elephants walking or perhaps training sets with insufficient frame rates results in latent diffusion having to work harder to interpolate the missing frames, resulting in **poor temporal realism**. However, as both datasets and models continue to grow in size, the videos generated by the methods discussed in this post will improve in realism and these failure modes will become less common.
 
 Undoubtedly, these Text-to-Video generation methods can substantially expand the creative toolbox available to artists and creators, however, key issues should be addressed before these networks become publicly available. For example, misuse of the models can result in fake, explicit, hateful, or otherwise generally **harmful content**. To help address this, additional classifiers can be trained to filter text inputs and video outputs. Moreover, the outputs reflect the composition of the training dataset, which include some problematic data, social biases, and stereotypes.
 {: style="text-align: justify"}
@@ -221,8 +221,8 @@ Undoubtedly, these Text-to-Video generation methods can substantially expand the
 ##### **Related Works**
 Several advancements have been achieved with the methods described in this post, however, video generation is not a new concept, nor do the methods described in this post solve all video generation challenges. So, here is a selection of some other interesting video generation variations/applications developed by other researchers:
 {: style="text-align: justify"}
-* [Phenaki](https://phenaki.video/) is another video generation tool that can generate videos of several minutes in length, compared to 5 second videos generated by Imagen Video and Make-a-Video.
-* [Lee *et al.*](https://kuai-lab.github.io/eccv2022sound/) and [Narashimhan *et al.*](https://medhini.github.io/audio_video_textures/) demonstrate the use of audio in generating video.
+* [Phenaki](https://phenaki.video/) is another video generation tool that can generate videos of several minutes in length from story-like text prompts, compared to 5 second videos generated by Imagen Video and Make-a-Video.
+* [Lee *et al.*](https://kuai-lab.github.io/eccv2022sound/) and [Narashimhan *et al.*](https://medhini.github.io/audio_video_textures/) generated video synced with audio inputs.
 * [Visual Foresight](https://sites.google.com/view/visualforesight?pli=1) predicts how an object will move given an action in pixel space for more practical robotics planning and control applications.
 
 #### **References**
@@ -266,4 +266,7 @@ Several advancements have been achieved with the methods described in this post,
 {: style="font-size: smaller"}
 
 [[14] Ding, M. et al. CogView: Mastering Text-to-Image Generation via Transformers, 2021. *35th Conference on Neural Information Processing Systems (NeurIPS)*.](https://proceedings.neurips.cc/paper/2021/file/a4d92e2cd541fca87e4620aba658316d-Paper.pdf)
+{: style="font-size: smaller"}
+
+[[15] Ronneberger, O. et al. U-Net: Convolutional Networks for Biomedical Image Segmentation, 2015. *arXiv Preprint*.](https://arxiv.org/pdf/1505.04597)
 {: style="font-size: smaller"}
