@@ -29,7 +29,7 @@ In this post, we dissect and explain the mechanics behind the key building block
 Just six months after the release of DALL-E 2, both Meta and Google released novel Text-to-Video generation models that output impressive video-format content. These networks build off of recent advancements in Text-to-Image modeling using stable diffusion (like DALL-E [[1]](https://arxiv.org/pdf/2102.12092) and Imagen [[2]](https://arxiv.org/pdf/2205.11487)). Meta’s Make-A-Video [[3]](https://arxiv.org/pdf/2209.14792) is capable of five second 768x768 clips at variable frame rates while Google’s Imagen Video [[4]](https://arxiv.org/pdf/2210.02303) can produce 1280×768 videos at 24 fps. Rather than training strictly on text-video pair datasets, both Imagen Video and Make-a-Video leverage the massive text-image pair databases to construct video from pretrained Text-to-Image generation models. These Text-to-Video generators are capable of creating high-resolution, photorealistic and stylistic content of impossible scenarios. Networks such as these can be powerful tools for artists and creators as well as the basis for predicting future frames of a video.
 {: style="text-align: justify"}
 
-Video generation has progressed rapidly in the past decade. Early video generation models focused on simple, specific domains and next frame prediction with **deterministic autoregressive** methods (CDNA [[5]](https://proceedings.neurips.cc/paper/2016/file/d9d4f495e875a2e075a1a4a6e1b9770f-Paper.pdf), PredRNN [[6]](https://papers.nips.cc/paper/2017/file/e5f6ad6ce374177eef023bf5d0c018b6-Paper.pdf)). Later video prediction models incorporated stochasticity (SV2P [[7]](https://openreview.net/pdf?id=rk49Mg-CW)). Another line of work uses generative models, namely **GANs**, to synthesize complex scenes without a first frame (VGAN [[8]](https://arxiv.org/pdf/1611.01799.pdf), TGAN [[9]](https://arxiv.org/pdf/1611.06624)). More recently, text-to-video has been approached with **VQVAEs** to learn latent representations of video frames and then **autoregressive transformers** to generate video samples (GODIVA [[10]](https://arxiv.org/pdf/2104.14806), NUWA [[11]](https://arxiv.org/pdf/2111.12417)). This technique allows for open-domain video generation, but frames are still generated one at a time chronologically, resulting in potentially poor text-video alignment. CogVideo [[12]](https://arxiv.org/pdf/2205.15868) adjusts the training procedure to fix alignment (discussed below) and uses pre-trained text-to-image weights. Make-A-Video and Imagen Video both use **diffusion models** (VDM [[13]](https://openreview.net/pdf?id=2LdBqxc1Yv)), which we will discuss in the next section.
+Video generation has progressed rapidly in the past decade. Early video generation models focused on simple, specific domains and next frame prediction with **deterministic autoregressive** methods (CDNA [[5]](https://proceedings.neurips.cc/paper/2016/file/d9d4f495e875a2e075a1a4a6e1b9770f-Paper.pdf), PredRNN [[6]](https://papers.nips.cc/paper/2017/file/e5f6ad6ce374177eef023bf5d0c018b6-Paper.pdf)). Later video prediction models incorporated stochasticity (SV2P [[7]](https://openreview.net/pdf?id=rk49Mg-CW)). Another line of work uses generative models, namely **GANs**, to synthesize complex scenes without a first frame (VGAN [[8]](https://arxiv.org/pdf/1611.01799.pdf), TGAN [[9]](https://arxiv.org/pdf/1611.06624)). More recently, Text-to-Video has been approached with **VQVAEs** to learn latent representations of video frames and then **autoregressive transformers** to generate video samples (GODIVA [[10]](https://arxiv.org/pdf/2104.14806), NUWA [[11]](https://arxiv.org/pdf/2111.12417)). This technique allows for open-domain video generation, but frames are still generated one at a time chronologically, resulting in potentially poor text-video alignment. CogVideo [[12]](https://arxiv.org/pdf/2205.15868) adjusts the training procedure to fix alignment (discussed below) and uses pre-trained Text-to-Image weights. Make-A-Video and Imagen Video both use **diffusion models** (VDM [[13]](https://openreview.net/pdf?id=2LdBqxc1Yv)), which we will discuss in the next section.
 {: style="text-align: justify"}
 
 Make-A-Video and Imagen Video have come out just six months after Open-AI’s DALL-E 2. Text-to-Video is a much harder problem than Text-to-Image because we don’t have access to as many labeled text-video pairs. Therefore, all the models we highlight take advantage of starting from an existing Text-to-Image model with pre-trained or frozen weights. Moreover, beyond just generating pixels, the network has to predict how they will all evolve over time to coherently complete any actions in the text prompt.
@@ -41,7 +41,7 @@ Make-A-Video and Imagen Video have come out just six months after Open-AI’s DA
 </figure>
 &nbsp;  
 
-We’ll break down the building blocks to make Text-to-Video generation possible, starting from a brief overview of how text to image generators use stable diffusion, how to make the components 3D to incorporate temporal information for video generation, and how to increase the spatial and temporal resolution. We focus on how these components make up Make-A-Video and Imagen Video, but also touch on CogVideo (an open-source text to image video generator that uses a VQVAE + autoregressive transformers architecture).
+We’ll break down the building blocks to make Text-to-Video generation possible, starting from a brief overview of how Text-to-Image generators use stable diffusion, how to make the components 3D to incorporate temporal information for video generation, and how to increase the spatial and temporal resolution. We focus on how these components make up Make-A-Video and Imagen Video, but also touch on CogVideo (an open-source Text-to-Image video generator that uses a VQVAE + autoregressive transformers architecture).
 {: style="text-align: justify"}
 
 <figure>
@@ -68,18 +68,18 @@ Here an input image is encoded into a lower-dimensional latent space representat
 &nbsp;  
 <callout>
 
-Try it out yourself! We’ve trained an autoencoder with a two-dimensional latent space embedding. The two latents happen to correspond to expression and pose (the two variables changed in the dataset). Drag your cursor through latent space to change the values of the latent variable, Z, and see how the reconstructed image from the decoder changes:
+Try it out yourself! We’ve trained an autoencoder with a two-dimensional latent space embedding. The two latents happen to correspond to expression and pose (the two variables changed in the dataset). Slowly Drag your cursor through latent space to change the values of the latent variable, Z, and see how the reconstructed image from the decoder changes (dragging too quickly will buffer image generation):
 
 </callout>
 <figure>
   <iframe height="420px" width="720px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://vae-gui.onrender.com/"></iframe>
 </figure>
 
-For Text-to-Video generation, the encoding-decoding network is trained using **stable diffusion**.
+For Text-to-Video generation, the encoding-decoding network is trained using **stable diffusion** [[15]](https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf).
 {: style="text-align: justify"}
 
 ##### **How does stable diffusion work in latent space?**
-During the forward process, we create a dataset by incrementally adding more noise to our latent variables. In the reverse process, we train a model with a **U-Net architecture** to iteratively denoise these latents. This way, we can efficiently generate new images by starting with random noise and end up with a latent that can be decoded into a real image (while conditioning layers on the input text embedding).
+During the forward process, we create a dataset by incrementally adding more noise to our latent variables. In the reverse process, we train a model with a **U-Net architecture** [[16]](https://arxiv.org/pdf/1505.04597) to iteratively denoise these latents. This way, we can efficiently generate new images by starting with random noise and end up with a latent that can be decoded into a real image (while conditioning layers on the input text embedding).
 {: style="text-align: justify"}
 
 &nbsp;  
@@ -95,7 +95,7 @@ The U-Net architecture (which we use as a noise detector) is an **autoencoder**.
 
 <figure>
   <img src="assets/img/unet2.png" width="770" />
-  <figcaption>Figure 5. U-Net architecture consists of a convolutional encoder and decoder. Skip connections copy and crop information from downsampling. Attention layers at skip connections help by weighting relevant information. Referenced from U-Net [15].</figcaption>
+  <figcaption>Figure 5. U-Net architecture consists of a convolutional encoder and decoder. Skip connections copy and crop information from downsampling. Attention layers at skip connections help by weighting relevant information. Referenced from U-Net [16].</figcaption>
 </figure>
 &nbsp;
 
@@ -104,7 +104,7 @@ However, the poor feature representation in the initial layers result in redunda
 
 &nbsp;  
 <callout>
-Try it out yourself! Click on different points in the first image and see how this would change the weights in the attention layer. The attention highlights similar features to the clicked region. For text-to-image and text-to-video generation, we include text embeddings to condition attention:
+Try it out yourself! Click on different points in the first image and see how this would change the weights in the attention layer. The attention highlights similar features to the clicked region. For Text-to-Image and Text-to-Video generation, we include text embeddings to condition attention:
 </callout>
 <figure>
   <iframe height="400px" width="600px" scrolling="No" frameborder="0" hspace="0" vspace="0" src="https://attn-gui.onrender.com/"></iframe>
@@ -268,5 +268,7 @@ Several advancements have been achieved with the methods described in this post,
 [[14] Ding, M. et al. CogView: Mastering Text-to-Image Generation via Transformers, 2021. *35th Conference on Neural Information Processing Systems (NeurIPS)*.](https://proceedings.neurips.cc/paper/2021/file/a4d92e2cd541fca87e4620aba658316d-Paper.pdf)
 {: style="font-size: smaller"}
 
-[[15] Ronneberger, O. et al. U-Net: Convolutional Networks for Biomedical Image Segmentation, 2015. *arXiv Preprint*.](https://arxiv.org/pdf/1505.04597)
+[[15] Rombach, R. et al. High-Resolution Image Synthesis with Latent Diffusion Models, 2022. *IEEE / CVF Computer Vision and Pattern Recognition Conference (CVPR)*.](https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf)
+
+[[16] Ronneberger, O. et al. U-Net: Convolutional Networks for Biomedical Image Segmentation, 2015. *arXiv Preprint*.](https://arxiv.org/pdf/1505.04597)
 {: style="font-size: smaller"}
