@@ -166,7 +166,7 @@ Make-A-Video’s approach initially interpolates frames and then increases the s
 Here we show a low-resolution video upsampled using bilinear interpolation (left) and the same video upsampled using a super-resolution neural networks applied to each individual frame (middle). We see flickering artifacts because upsampling was performed separately per frame, rather than hallucinating detail across frames. The difference map (right) highlights the differences between the left and middle videos to demonstrate the flickering effect that occurs in a video when upsampled without proper detail hallucination to maintain temporal coherency. The video generation models we discuss actively consider temporal coherency while hallucinating details during upsampling to avoid these artifacts
 </callout>
 <figure>
-  <video autoplay muted loop src="assets/img/artifacts_stack1.mp4"
+  <video autoplay muted loop controls src="assets/img/artifacts_stack1.mp4"
       style="width:500px"
       type="video/mp4">
   </video>
@@ -200,7 +200,7 @@ As beautiful as many of these videos are . . .
 {: style="text-align: justify"}
 
 <figure>
-  <video autoplay muted loop src="https://imagen.research.google/video/hdvideos/51.mp4" width="600" type="video/mp4">
+  <video autoplay muted loop controls src="https://imagen.research.google/video/hdvideos/51.mp4" width="600" type="video/mp4">
   </video>
 </figure>
 &nbsp;  
@@ -209,7 +209,7 @@ Not all of them are perfect . . . *(pay close attention to the legs of the eleph
 {: style="text-align: justify"}
 
 <figure>
-  <video autoplay muted loop src="https://imagen.research.google/video/hdvideos/14.mp4" width="600" type="video/mp4">
+  <video autoplay muted loop controls src="https://imagen.research.google/video/hdvideos/14.mp4" width="600" type="video/mp4">
   </video>
 </figure>
 
