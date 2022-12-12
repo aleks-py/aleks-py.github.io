@@ -1,6 +1,6 @@
 ---
 layout: about
-title: Text-to-Video-Generation
+title:  
 permalink: /
 subtitle:
 
