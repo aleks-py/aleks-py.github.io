@@ -1,6 +1,6 @@
 ---
 layout: about
-title:  
+title: Building Blocks of Text-to-Video Generation
 permalink: /
 subtitle:
 
