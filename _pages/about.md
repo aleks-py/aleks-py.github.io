@@ -269,6 +269,7 @@ Several advancements have been achieved with the methods described in this post,
 {: style="font-size: smaller"}
 
 [[15] Rombach, R. et al. High-Resolution Image Synthesis with Latent Diffusion Models, 2022. *IEEE / CVF Computer Vision and Pattern Recognition Conference (CVPR)*.](https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf)
+{: style="font-size: smaller"}
 
 [[16] Ronneberger, O. et al. U-Net: Convolutional Networks for Biomedical Image Segmentation, 2015. *arXiv Preprint*.](https://arxiv.org/pdf/1505.04597)
 {: style="font-size: smaller"}
