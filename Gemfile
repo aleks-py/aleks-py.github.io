@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 group :jekyll_plugins do
     # gem 'wdm', '>= 0.1.0'
+      gem 'wdm', '>= 0.1.0', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
     gem 'jekyll', '4.2.1'
     gem 'jekyll-archives'
     gem 'jekyll-diagrams'
@@ -14,7 +15,7 @@ group :jekyll_plugins do
     gem 'jekyll-sitemap'
     gem 'jekyll-target-blank'
     gem 'jekyll-link-attributes'
-    # gem 'jekyll-twitter-plugin'
+    gem 'jekyll-twitter-plugin'
     gem 'jemoji'
     # gem 'mini_racer'
     gem 'unicode_utils'
